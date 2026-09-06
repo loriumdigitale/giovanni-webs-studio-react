@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://lorium-studio.netlify.app/sitemap.xml
+Sitemap: https://lorium.com.ar/sitemap.xml
