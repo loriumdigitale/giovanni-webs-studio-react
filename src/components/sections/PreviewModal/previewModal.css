@@ -124,7 +124,7 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
 
-  background: var(--gradient-lorium);
+  background: var(--color-secondary);
   border: none;
   border-radius: var(--border-rad-lg);
   cursor: pointer;
