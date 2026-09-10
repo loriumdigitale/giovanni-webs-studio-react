@@ -43,6 +43,24 @@ export function ContactForm() {
   function handleSubmit(event) {
     event.preventDefault();
     if (isSubmitting) return;
+
+    if (!formData.service || !formData.stage) {
+      setToast({
+        type: "error",
+        message: "Seleccioná el servicio y la etapa de tu proyecto.",
+      });
+      return;
+    }
+
+    if (!formData.projectDetails.trim()) {
+      setToast({
+        type: "error",
+        message:
+          "Por favor describe tu idea, eso me ayuda a tener una mejor propuesta",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     if (formData.contactMethod === "WhatsApp") {
@@ -98,6 +116,7 @@ export function ContactForm() {
         <ServiceSelector
           selectedService={formData.service}
           onSelect={(value) => updateField("service", value)}
+          required
         />
 
         <ProjectDetails
@@ -108,6 +127,7 @@ export function ContactForm() {
         <StageSelector
           selectedStage={formData.stage}
           onSelect={(value) => updateField("stage", value)}
+          required
         />
 
         <NameInput

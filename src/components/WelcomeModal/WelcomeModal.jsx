@@ -50,7 +50,7 @@ export function WelcomeModal({ isOpen, onClose }) {
           className="welcome-modal__logo"
           aria-hidden="true"
         />
-        <p className="welcome-modal__subtitle text-gradient">[ LABORATORIUM DIGITALE ]</p>
+        <p className="welcome-modal__subtitle">[ LABORATORIUM DIGITALE ]</p>
 
         <h1 id="welcome-modal-title" className="welcome-modal__title">
           Diseño y construyo productos digitales

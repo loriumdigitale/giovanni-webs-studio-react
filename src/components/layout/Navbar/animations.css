@@ -14,3 +14,34 @@
     transparent
   );
 }
+
+/* El borde nace en el punto central, acompana la entrada del texto y se repliega
+   antes de que las palabras vuelvan a ocultarse. */
+@keyframes nav-border-expand {
+  0% {
+    clip-path: inset(
+      0 calc(50% - var(--nav-border-origin-offset)) 0
+        calc(50% + var(--nav-border-origin-offset))
+    );
+  }
+
+  12%,
+  67% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  79%,
+  100% {
+    clip-path: inset(
+      0 calc(50% - var(--nav-border-origin-offset)) 0
+        calc(50% + var(--nav-border-origin-offset))
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__span::before {
+    animation: none;
+    clip-path: inset(0);
+  }
+}

@@ -1,0 +1,24 @@
+.app-shell {
+	position: relative;
+	isolation: isolate;
+	min-height: 100vh;
+}
+
+.procedural-blobs {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.procedural-blobs__blob {
+	position: absolute;
+	top: var(--blob-top);
+	left: var(--blob-left);
+	width: var(--blob-size);
+	height: var(--blob-size);
+	border-radius: 50%;
+	background: var(--blob-color);
+	filter: blur(var(--blob-blur));
+}

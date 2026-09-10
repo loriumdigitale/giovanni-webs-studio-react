@@ -45,6 +45,58 @@
   height: auto;
 }
 
+.nav__span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5em 1em;
+  border: 2px solid transparent;
+  border-radius: var(--border-rad-md);
+  --nav-border-origin-offset: 16px;
+  color: var(--color-argentina-white);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+}
+
+.nav__span::before {
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--color-secondary);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  animation: nav-border-expand 7.5s ease-in-out infinite;
+}
+
+.nav__span-motion-text {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.nav__span-category,
+.nav__span-country {
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.nav__separator {
+  position: relative;
+  z-index: 3;
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+}
+
 /* Botón hamburguesa */
 .nav__toggle {
   display: flex;

@@ -14,6 +14,7 @@ export function ContactMethodSelector({
     <div className="contact-form__section contact-form__section--contact-method">
       <p className="contact-form__label">
         ¿Por dónde preferís que te contacte?
+        <span className="contact-form__required">*</span>
       </p>
 
       <div className="contact-form__options contact-form__options--socials">

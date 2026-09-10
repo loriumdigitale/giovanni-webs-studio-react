@@ -1,11 +1,19 @@
 import { stages } from "../../../../../data/stage.js";
 
-export function StageSelector({ selectedStage, onSelect }) {
+export function StageSelector({ selectedStage, onSelect, required = false }) {
   return (
     <div className="contact-form__section contact-form__section--stage">
-      <p className="contact-form__label">¿En qué etapa está tu proyecto?</p>
+      <p className="contact-form__label">
+        ¿En qué etapa está tu proyecto?
+        {required && <span className="contact-form__required">*</span>}
+      </p>
 
-      <div className="contact-form__options contact-form__options--stages">
+      <div
+        className="contact-form__options contact-form__options--stages"
+        role="group"
+        aria-label="Etapa del proyecto"
+        aria-required={required}
+      >
         {stages.map((item) => (
           <button
             key={item.stage}

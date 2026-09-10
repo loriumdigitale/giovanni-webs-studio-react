@@ -1,3 +1,23 @@
+@media (max-width: 400px) {
+  .nav__brand-logo {
+    width: 80px;
+    height: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav__span {
+    gap: 0.35rem;
+    padding: 0.4em 0.7em;
+    font-size: 9px;
+  }
+
+  .nav__toggle-bar {
+    width: 15px;
+    height: 2px;
+  }
+}
+
 @media (min-width: 600px) {
   /* Altura fija del contenedor: evita que la imagen fuerce un crecimiento desc/* Contenedor: altura fija, imagen a la derecha con ancho tope (no %, para evitar que se estire de más en cards muy anchas) */
   .about-me__container {
@@ -22,26 +42,8 @@
     max-width: 70%;
   }
 
-  .nav__toggle {
-    display: none;
-  }
-
   .header--menu-open {
     padding-bottom: 0;
-  }
-
-  .nav__list {
-    display: flex;
-    position: static;
-    flex-direction: row;
-    width: auto;
-    padding: 0;
-    border-bottom: none;
-    background-color: transparent;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: none;
   }
 
   :root {
@@ -97,6 +99,25 @@
 }
 
 @media (min-width: 800px) {
+  /* Navbar */
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+    border-bottom: none;
+    background-color: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
   /* About Me */
   .about-me__image {
     width: 200px;

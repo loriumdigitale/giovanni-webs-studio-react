@@ -8,16 +8,18 @@ export function ProjectCard({ project }) {
   return (
     <>
       <article className="project-card">
-        <img
-          src={project.image}
-          alt={project.name}
-          className="project-card__img"
-        />
+        <div className="project-card__media">
+          <img
+            src={project.image}
+            alt={project.name}
+            className="project-card__img"
+          />
+          <span className="project-card__type">{project.type}</span>
+        </div>
 
         <div className="project-card__info">
           <div className="project-card__header">
             <h3 className="project-card__title">{project.name}</h3>
-            <span className="project-card__type">{project.type}</span>
 
             <button
               type="button"
@@ -29,6 +31,7 @@ export function ProjectCard({ project }) {
               }}
             >
               <Eye className="project-card__preview-icon" />
+              <span>Vista previa</span>
             </button>
           </div>
 

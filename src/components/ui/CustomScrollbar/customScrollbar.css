@@ -1,0 +1,28 @@
+.custom-scrollbar {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 1000;
+  width: 10px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.custom-scrollbar__thumb {
+  position: absolute;
+  inset: 0 2px auto 2px;
+  display: block;
+  border-radius: var(--border-rad-xs);
+  background: var(--color-secondary);
+  cursor: grab;
+  transition: background-color 150ms ease;
+}
+
+.custom-scrollbar__thumb:hover {
+  background: var(--color-tertiary);
+}
+
+.custom-scrollbar-dragging,
+.custom-scrollbar-dragging * {
+  cursor: grabbing !important;
+}

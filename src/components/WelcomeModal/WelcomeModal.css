@@ -63,6 +63,8 @@
 
 .welcome-modal__subtitle {
   font-size: var(--font-size-sm);
+  color: var(--color-secondary);
+  font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
@@ -82,7 +84,7 @@
 
 .welcome-modal__cta {
   padding: var(--space-md) var(--space-sm);
-  background: var(--gradient-lorium);
+  background: var(--color-secondary);
   color: inherit;
   border: none;
   border-radius: var(--border-rad-xl);

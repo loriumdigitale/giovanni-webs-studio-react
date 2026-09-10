@@ -1,32 +1,11 @@
-/* Contenedor de país y profesión */
-.hero__span {
-  display: inline-flex;
-  align-items: center;
-  border-radius: var(--border-rad-md);
-  color: var(--color-argentina-white);
-  margin-bottom: var(--space-sm);
-  font-size: 10px;
-  font-weight: var(--font-weight-bold);
-  padding: 0.5em 1em;
-  gap: 0.5rem;
-  border: 2px solid transparent;
-  background:
-    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
-    var(--gradient-lorium) border-box;
-}
-
-.hero__separator {
-  width: 5px;
-  height: 5px;
-  flex-shrink: 0;
-  background-color: var(--color-tertiary);
-  border-radius: 50%;
-}
-
 .hero__title {
   margin-bottom: var(--space-xl);
   font-size: var(--font-size-lg-xl);
   position: relative;
+}
+
+.hero__title--strong {
+  color: var(--color-secondary);
 }
 
 .hero__info::after {

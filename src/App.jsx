@@ -11,6 +11,8 @@ import { Catalog } from "./pages/Catalog/Catalog.jsx";
 import { TheStudy } from "./pages/TheStudy/TheStudy.jsx";
 import { Footer } from "./components/layout/Footer/Footer.jsx";
 import { AnimatedMotion } from "./components/ui/AnimatedMotion/AnimatedMotion.jsx";
+import { ProceduralBlobs } from "./components/ui/ProceduralBlobs/ProceduralBlobs.jsx";
+import { CustomScrollbar } from "./components/ui/CustomScrollbar/CustomScrollbar.jsx";
 
 export function App() {
   const location = useLocation();
@@ -26,7 +28,9 @@ export function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
   return (
-    <>
+    <div className="app-shell">
+      <ProceduralBlobs />
+      <CustomScrollbar />
       {/* Definición global del gradiente, reutilizable por cualquier ícono SVG */}
       <svg
         width="0"
@@ -75,7 +79,7 @@ export function App() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,12 @@
 /* Modal Bienvenida */
 @import "../components/WelcomeModal/WelcomeModal.css";
 
+/* Fondo procedural */
+@import "../components/ui/ProceduralBlobs/proceduralBlobs.css";
+
+/* Scrollbar personalizada */
+@import "../components/ui/CustomScrollbar/customScrollbar.css";
+
 /* Navbar */
 @import "../components/layout/Navbar/navbar.css";
 @import "../components/layout/Navbar/animations.css";

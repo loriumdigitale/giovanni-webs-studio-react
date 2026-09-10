@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import loriumLargeLogo from "../../../assets/logos/LoriumIcon-grdient-large-white-v1.svg";
+import { NavSpanMotion } from "./motion/NavSpanMotion";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,8 @@ export function Navbar() {
             />
           </NavLink>
         </div>
+
+        <NavSpanMotion />
 
         <button
           type="button"

@@ -36,7 +36,7 @@
 
   padding: var(--space-md);
   border-radius: var(--border-rad-sm);
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
   font-size: var(--font-size-xs);
   background: var(--color-surface);
   color: var(--color-secondary-text);
@@ -54,7 +54,7 @@
 }
 
 .services__card-icon path {
-  fill: url(#lorium-gradient);
+  fill: var(--color-text);
 }
 
 .services__card-title {

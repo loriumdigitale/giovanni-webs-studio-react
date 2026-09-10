@@ -16,7 +16,10 @@ export function StudySection({ id, title, children, isOpen, onToggle }) {
         aria-expanded={isOpen}
         aria-controls={contentId}
       >
-        {title}
+        <span>{title}</span>
+        <span className="the-study__section-indicator" aria-hidden="true">
+          {isOpen ? "-" : "+"}
+        </span>
       </button>
 
       <AnimatePresence initial={false}>

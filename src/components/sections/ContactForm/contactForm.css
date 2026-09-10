@@ -38,6 +38,11 @@
   margin-bottom: var(--space-sm);
 }
 
+.contact-form__required {
+  color: #ff4d4d;
+  margin-left: 4px;
+}
+
 .contact-form__options {
   display: grid;
   gap: var(--space-sm);

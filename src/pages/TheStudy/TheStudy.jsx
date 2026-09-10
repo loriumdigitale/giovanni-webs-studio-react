@@ -70,7 +70,7 @@ export function TheStudy() {
   return (
     <div className="the-study__main container-wrapper">
       <h1 className="the-study__title">
-        <span className="text-gradient">Lorium</span>
+        <span className="text-gradient">Conocé más sobre Lorium</span>
       </h1>
       <div className="the-study__section-container">
         {studySections.map((section) => (

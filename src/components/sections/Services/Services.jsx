@@ -3,7 +3,7 @@ import { services } from "../../../data/services.js";
 export function Services() {
   return (
     <section className="services">
-      <span className="services__badge text-gradient"> Servicios </span>
+      <span className="services__badge"> Servicios </span>
 
       <h2 className="services__title">Enterate de los servicios de Lorium</h2>
 

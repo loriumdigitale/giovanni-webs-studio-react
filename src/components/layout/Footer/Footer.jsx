@@ -23,7 +23,7 @@ export function Footer() {
             </li>
             <li className="footer__social-item">
               <a
-                href="mailto:giovanniwebsstudio@gmail.com"
+                href="mailto:lorium.digitale@gmail.com"
                 className="footer__social-link"
               >
                 Correo

@@ -5,6 +5,7 @@ export function ProjectDetails({ value, onChange }) {
     <div className="contact-form__section contact-form__section--details">
       <label className="contact-form__label" htmlFor="project-details">
         ¿Qué tenés en mente?
+        <span className="contact-form__required">*</span>
       </label>
       <textarea
         id="project-details"

@@ -16,16 +16,12 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--gradient-lorium);
+  background: var(--color-secondary);
   transition: width 0.3s ease;
 }
 
 .footer__social-link:hover {
-  background: var(--gradient-lorium);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--color-secondary);
 }
 
 .footer__social-link:hover::after {
@@ -39,11 +35,7 @@
 }
 
 .footer__tool-link:hover {
-  background: var(--gradient-lorium);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--color-secondary);
   border-color: var(--color-primary);
 }
 

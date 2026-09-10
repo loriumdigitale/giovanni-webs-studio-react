@@ -25,7 +25,7 @@
   --color-text-tertiary: #868686;
 
   /* nuevos colores */
-  --color-surface: #0e0322;
+  --color-surface: #18033e;
   --color-surface-op2: #1c0b3d;
   --color-border-surface-op2: #000;
   --color-bg: #030108;
@@ -170,17 +170,17 @@ dialog :focus-visible {
 /* Estilos de scrollbar */
 /* Para Chrome, Safari y Edge */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--color-secondary);
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-secondary);
   border-radius: var(--border-rad-xs);
-  border: 2px solid var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -189,6 +189,6 @@ dialog :focus-visible {
 
 /* Para Firefox */
 * {
-  scrollbar-color: var(--color-secondary) var(--color-bg);
-  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) transparent;
+  scrollbar-width: none;
 }
