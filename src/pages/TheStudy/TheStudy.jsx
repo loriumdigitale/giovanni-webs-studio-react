@@ -12,7 +12,7 @@ const studySections = [
     id: "cambio",
     title: "El cambio",
     content:
-      "Lorium nació como una evolución de Giovanni Webs Studio. Con el tiempo entendí que mi interés iba más allá del desarrollo web y que limitar el proyecto a una sola disciplina no representaba lo que realmente quería construir. El cambio hacia Lorium representa esa nueva visión: un estudio con la libertad de explorar diferentes áreas y crear mucho más allá de una tecnología específica.",
+      "Con el tiempo entendí que mi interés por el mundo digital iba mucho más allá del desarrollo web. Quería tener la libertad de explorar distintas áreas, aprender cosas nuevas y experimentar con diferentes tecnologías sin limitar lo que podía crear.",
   },
   {
     id: "laboratorium",
@@ -54,7 +54,7 @@ const studySections = [
     id: "hacia-donde-va",
     title: "Hacia donde va",
     content:
-      "Quiero que Lorium pueda convertirse en un estudio capaz de crear mucho más que productos tecnológicos. La visión es construir una empresa con la libertad de explorar diferentes áreas y convertir ideas en proyectos reales, manteniendo siempre la misma curiosidad por investigar, experimentar y crear.",
+      "La visión es que Lorium pueda explorar diferentes áreas tecnológicas y convertir ideas en proyectos reales, manteniendo siempre la misma curiosidad por investigar, experimentar y crear.",
   },
 ];
 
@@ -70,7 +70,9 @@ export function TheStudy() {
   return (
     <div className="the-study__main container-wrapper">
       <h1 className="the-study__title">
-        <span className="text-gradient">Conocé más sobre Lorium</span>
+        <span className="the-study__title-text">
+          Conocé más sobre <strong className="text-gradient">Lorium</strong>
+        </span>
       </h1>
       <div className="the-study__section-container">
         {studySections.map((section) => (
