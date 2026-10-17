@@ -156,14 +156,16 @@ export function Footer() {
           Cada proyecto está diseñado con un objetivo claro: combinar diseño,
           funcionalidad y rendimiento en una sola experiencia.
         </p>
-        <button
-          type="button"
-          className="footer__groups-trigger"
-          onClick={() => setIsGroupsOpen(true)}
-          aria-haspopup="dialog"
-        >
-          <span className="footer__groups-trigger-text">Lorium Groups</span>
-        </button>
+        <div className="footer__groups-wrapper">
+          <button
+            type="button"
+            className="footer__groups-trigger"
+            onClick={() => setIsGroupsOpen(true)}
+            aria-haspopup="dialog"
+          >
+            <span className="footer__groups-trigger-text">Lorium Groups</span>
+          </button>
+        </div>
         <p className="footer__copyright">
           © 2026 Giovanni - Todos los derechos reservados
         </p>
