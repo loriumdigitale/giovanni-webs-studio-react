@@ -144,10 +144,16 @@
 
 
 /* Lorium Groups */
+.footer__groups-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .footer__groups-trigger {
   display: block;
   width: fit-content;
-  margin: 0 auto;
+  margin: 0;
   padding: var(--space-sm) var(--space-sm);
   border: 0;
   background: transparent;
