@@ -145,13 +145,16 @@
 
 /* Lorium Groups */
 .footer__groups-trigger {
-  margin-top: calc(var(--space-sm) * -1);
-  padding: var(--space-xs) var(--space-sm);
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  padding: var(--space-sm) var(--space-sm);
   border: 0;
   background: transparent;
   color: var(--color-text-secondary);
   font: inherit;
-  font-size: var(--font-size-2xs);
+  font-size: var(--font-size-xs);
+  text-align: center;
   cursor: pointer;
   transition: color 0.2s ease;
 }
