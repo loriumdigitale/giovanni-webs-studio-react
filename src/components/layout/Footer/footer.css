@@ -153,3 +153,87 @@
 .tool--software::before {
   content: "⚙ ";
 }
+
+
+/* Lorium Groups */
+.footer__groups-trigger {
+  margin-top: calc(var(--space-sm) * -1);
+  padding: var(--space-xs) var(--space-sm);
+  border: 0;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font: inherit;
+  font-size: var(--font-size-2xs);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer__groups-trigger:hover,
+.footer__groups-trigger:focus-visible {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__groups-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  background: rgb(0 0 0 / 65%);
+}
+
+.footer__groups-modal {
+  position: relative;
+  width: min(100%, 460px);
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border-surface);
+  border-radius: var(--border-rad-lg);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  box-shadow: 0 18px 60px rgb(0 0 0 / 25%);
+}
+
+.footer__groups-modal h2 {
+  margin: var(--space-sm) 0 var(--space-md);
+  font-size: var(--font-size-xl);
+}
+
+.footer__groups-modal p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+}
+
+.footer__groups-modal .footer__groups-eyebrow {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer__groups-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--color-border-surface);
+  border-radius: var(--border-rad-sm);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .footer__groups-modal {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
