@@ -39,3 +39,17 @@
   border-color: var(--color-primary);
 }
 
+/* Animación del enlace Lorium Groups */
+.footer__groups-trigger {
+  transition: color 0.3s ease;
+}
+
+.footer__groups-trigger:hover,
+.footer__groups-trigger:focus-visible {
+  color: var(--color-secondary);
+}
+
+.footer__groups-trigger:hover .footer__groups-trigger-text::after,
+.footer__groups-trigger:focus-visible .footer__groups-trigger-text::after {
+  width: 100%;
+}
