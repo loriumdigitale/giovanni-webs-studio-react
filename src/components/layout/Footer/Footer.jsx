@@ -156,9 +156,6 @@ export function Footer() {
           Cada proyecto está diseñado con un objetivo claro: combinar diseño,
           funcionalidad y rendimiento en una sola experiencia.
         </p>
-        <p className="footer__copyright">
-          © 2026 Giovanni - Todos los derechos reservados
-        </p>
         <button
           type="button"
           className="footer__groups-trigger"
@@ -167,6 +164,9 @@ export function Footer() {
         >
           Lorium Groups
         </button>
+        <p className="footer__copyright">
+          © 2026 Giovanni - Todos los derechos reservados
+        </p>
       </footer>
       {isGroupsOpen && (
         <div
