@@ -162,7 +162,7 @@ export function Footer() {
           onClick={() => setIsGroupsOpen(true)}
           aria-haspopup="dialog"
         >
-          Lorium Groups
+          <span className="footer__groups-trigger-text">Lorium Groups</span>
         </button>
         <p className="footer__copyright">
           © 2026 Giovanni - Todos los derechos reservados
@@ -193,9 +193,9 @@ export function Footer() {
             <h2 id="footer-groups-title">Lorium Groups</h2>
             <p>
               Lorium Groups es una subdivisión vinculada a Lorium, la marca
-              madre, creada para impulsar proyectos desarrollados en grupo.
-              Cuenta con una identidad propia y tendrá su propio sitio web,
-              manteniendo siempre su vínculo con Lorium.
+              madre, que impulsa proyectos tanto individuales como
+              colaborativos. Cuenta con una identidad propia y tendrá su propio
+              sitio web, manteniendo siempre su vínculo con Lorium.
             </p>
           </section>
         </div>
