@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export function Footer() {
+  const [isGroupsOpen, setIsGroupsOpen] = useState(false);
+
   return (
     <div className="footer__container">
       <footer className="footer container-wrapper">
@@ -166,7 +170,47 @@ export function Footer() {
         <p className="footer__copyright">
           © 2026 Giovanni - Todos los derechos reservados
         </p>
+        <button
+          type="button"
+          className="footer__groups-trigger"
+          onClick={() => setIsGroupsOpen(true)}
+          aria-haspopup="dialog"
+        >
+          Lorium Groups
+        </button>
       </footer>
+      {isGroupsOpen && (
+        <div
+          className="footer__groups-backdrop"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setIsGroupsOpen(false);
+          }}
+        >
+          <section
+            className="footer__groups-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="footer-groups-title"
+          >
+            <button
+              type="button"
+              className="footer__groups-close"
+              onClick={() => setIsGroupsOpen(false)}
+              aria-label="Cerrar información de Lorium Groups"
+            >
+              ×
+            </button>
+            <p className="footer__groups-eyebrow">Una iniciativa de Lorium</p>
+            <h2 id="footer-groups-title">Lorium Groups</h2>
+            <p>
+              Lorium Groups es una subdivisión vinculada a Lorium, la marca
+              madre, creada para impulsar proyectos desarrollados en grupo.
+              Cuenta con una identidad propia y tendrá su propio sitio web,
+              manteniendo siempre su vínculo con Lorium.
+            </p>
+          </section>
+        </div>
+      )}
     </div>
   );
 }
