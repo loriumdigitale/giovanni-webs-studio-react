@@ -3,7 +3,7 @@ import "./introVideo.css";
 
 const MOBILE_BREAKPOINT = "(max-width: 767px)";
 
-export function IntroVideo() {
+export function IntroVideo({ onComplete }) {
   const [isMobile, setIsMobile] = useState(() =>
     window.matchMedia(MOBILE_BREAKPOINT).matches,
   );
@@ -16,6 +16,12 @@ export function IntroVideo() {
     mediaQuery.addEventListener("change", updateViewport);
     return () => mediaQuery.removeEventListener("change", updateViewport);
   }, []);
+
+  const finishIntro = () => {
+    if (isFinished) return;
+    setIsFinished(true);
+    onComplete?.();
+  };
 
   if (isFinished) return null;
 
@@ -32,8 +38,8 @@ export function IntroVideo() {
         muted
         playsInline
         preload="auto"
-        onEnded={() => setIsFinished(true)}
-        onError={() => setIsFinished(true)}
+        onEnded={finishIntro}
+        onError={finishIntro}
       >
         <source src={videoSource} type="video/webm" />
       </video>
