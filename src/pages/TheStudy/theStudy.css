@@ -48,3 +48,44 @@
 .the-study__section-text {
   padding: var(--space-xs) var(--space-sm);
 }
+
+/* Introducción audiovisual de El estudio */
+.the-study-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-bg, #000);
+}
+
+.the-study-intro__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.the-study__main {
+  animation: the-study-reveal 700ms ease both;
+}
+
+@keyframes the-study-reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .the-study__main {
+    animation-duration: 1ms;
+  }
+}
