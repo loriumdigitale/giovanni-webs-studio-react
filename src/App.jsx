@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop.jsx";
 import { IntroVideo } from "./components/IntroVideo/IntroVideo.jsx";
 import { Navbar } from "./components/layout/Navbar/Navbar.jsx";
@@ -16,6 +16,7 @@ import { CustomScrollbar } from "./components/ui/CustomScrollbar/CustomScrollbar
 
 export function App() {
   const location = useLocation();
+  const [isIntroPlaying, setIsIntroPlaying] = useState(true);
 
   useEffect(() => {
     // Le decimos al navegador: "no restaures el scroll vos solo, yo me encargo"
@@ -27,34 +28,38 @@ export function App() {
   }, []);
   return (
     <div className="app-shell">
-      <IntroVideo />
-      {/* Crosshair global: cambia estas props para ajustar su aspecto y comportamiento.
+      <IntroVideo onComplete={() => setIsIntroPlaying(false)} />
+      {!isIntroPlaying && (
+        <>
+          {/* Crosshair global: cambia estas props para ajustar su aspecto y comportamiento.
 
-          color: color CSS hexadecimal; thickness: grosor en px (0.5–8); opacity: opacidad (0–1).
+              color: color CSS hexadecimal; thickness: grosor en px (0.5–8); opacity: opacidad (0–1).
 
-          lineStyle: solid, dashed o dotted; gap: apertura alrededor del puntero en px; fade: desvanecimiento (0–1).
+              lineStyle: solid, dashed o dotted; gap: apertura alrededor del puntero en px; fade: desvanecimiento (0–1).
 
-          smoothing: suavidad del movimiento (0–1; valor menor = respuesta más rápida);
+              smoothing: suavidad del movimiento (0–1; valor menor = respuesta más rápida);
 
-          showCoordinates: mostrar/ocultar coordenadas.
+              showCoordinates: mostrar/ocultar coordenadas.
 
-          targetEffect: lock, glitch o none; targetSelector: selector CSS de los elementos que reaccionan.
+              targetEffect: lock, glitch o none; targetSelector: selector CSS de los elementos que reaccionan.
 
-          clickPulse: pulso al hacer clic;
+              clickPulse: pulso al hacer clic;
 
-          hideCursor: ocultar cursor nativo; blendMode: modo de mezcla.
-      */}
-      <Crosshair
-        color="#753ce9"
-        opacity={0.70}
-        thickness={2}
-        smoothing={0.18}
-        showCoordinates={false}
-        targetEffect="lock"
-        clickPulse={true}
-        hideCursor={true}
-      />
-      <CrosshairAutoplay />
+              hideCursor: ocultar cursor nativo; blendMode: modo de mezcla.
+          */}
+          <Crosshair
+            color="#753ce9"
+            opacity={0.70}
+            thickness={2}
+            smoothing={0.18}
+            showCoordinates={false}
+            targetEffect="lock"
+            clickPulse={true}
+            hideCursor={true}
+          />
+          <CrosshairAutoplay />
+        </>
+      )}
       <CustomScrollbar />
       {/* Definición global del gradiente, reutilizable por cualquier ícono SVG */}
       <svg
