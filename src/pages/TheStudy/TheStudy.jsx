@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { StudySection } from "./Section/StudySection.jsx";
 
-
 const studySections = [
   {
     id: "origen",
@@ -68,28 +67,26 @@ export function TheStudy() {
     );
   };
 
-
   return (
     <div className="the-study__main container-wrapper">
-        <div className="the-study__main container-wrapper">
-          <h1 className="the-study__title">
-            <span className="the-study__title-text">
-              Conocé más sobre <strong className="text-gradient">Lorium</strong>
-            </span>
-          </h1>
-          <div className="the-study__section-container">
-            {studySections.map((section) => (
-              <StudySection
-                key={section.id}
-                id={section.id}
-                title={section.title}
-                isOpen={openSectionId === section.id}
-                onToggle={() => toggleSection(section.id)}
-              >
-                {section.content}
-              </StudySection>
-            ))}
-          </div>
+      <h1 className="the-study__title">
+        <span className="the-study__title-text">
+          Conocé más sobre <strong className="text-gradient">Lorium</strong>
+        </span>
+      </h1>
+      <div className="the-study__section-container">
+        {studySections.map((section) => (
+          <StudySection
+            key={section.id}
+            id={section.id}
+            title={section.title}
+            isOpen={openSectionId === section.id}
+            onToggle={() => toggleSection(section.id)}
+          >
+            {section.content}
+          </StudySection>
+        ))}
+      </div>
     </div>
   );
 }
