@@ -1,22 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import loriumLargeLogo from "../../assets/logos/LoriumIcon-grdient-large-white-v1.svg";
 import { useAnimatedUnmount } from "../../hooks/useAnimatedUnmount.js";
 import { AnimatedMotion } from "../ui/AnimatedMotion/AnimatedMotion.jsx";
 
-const MOBILE_BREAKPOINT = "(max-width: 767px)";
-
 export function WelcomeModal({ isOpen, onClose }) {
-  const [isMobile, setIsMobile] = useState(() =>
-    window.matchMedia(MOBILE_BREAKPOINT).matches,
-  );
   const dialogRef = useRef(null);
   const { shouldRender, isClosing } = useAnimatedUnmount(isOpen);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT);
-    const updateViewport = (event) => setIsMobile(event.matches);
-    mediaQuery.addEventListener("change", updateViewport);
-    return () => mediaQuery.removeEventListener("change", updateViewport);
-  }, []);
 
   useEffect(() => {
     if (!shouldRender) return undefined;
@@ -54,25 +43,34 @@ export function WelcomeModal({ isOpen, onClose }) {
       aria-describedby="welcome-modal-description"
       onCancel={handleCancel}
     >
-      <video
-        className="welcome-modal__video"
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        onEnded={onClose}
-        onError={onClose}
-        aria-label="Introducción audiovisual de Lorium"
-      >
-        <source
-          src={
-            isMobile
-              ? "/intro/lorium_intro_mobile.webm"
-              : "/intro/lorium_intro_desktop.webm"
-          }
-          type="video/webm"
+      <div className="welcome-modal__content">
+        <img
+          src={loriumLargeLogo}
+          alt="Lorium"
+          className="welcome-modal__logo"
+          aria-hidden="true"
         />
-      </video>
+        <p className="welcome-modal__subtitle">[ LABORATORIUM DIGITALE ]</p>
+
+        <h1 id="welcome-modal-title" className="welcome-modal__title">
+          Diseño y construyo productos digitales
+        </h1>
+
+        <p
+          id="welcome-modal-description"
+          className="welcome-modal__description"
+        >
+          únicos, profesionales y cuidadosamente elaborados.
+        </p>
+
+        <button
+          type="button"
+          className="welcome-modal__cta"
+          onClick={onClose}
+        >
+          Explorar Lorium →
+        </button>
+      </div>
     </AnimatedMotion>
   );
 }
