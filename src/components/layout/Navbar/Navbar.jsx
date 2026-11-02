@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import loriumLargeLogo from "../../../assets/logos/LoriumIcon-grdient-large-v1.svg";
+import { LoriumLogo } from "../../ui/LoriumLogo/LoriumLogo.jsx";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +14,7 @@ export function Navbar() {
       <nav className="nav">
         <div className="nav__brand">
           <NavLink to="/" className="nav__brand-link">
-            <img
-              src={loriumLargeLogo}
-              className="nav__brand-logo"
-              alt="Lorium"
-            />
+            <LoriumLogo className="nav__brand-logo" />
           </NavLink>
         </div>
 
