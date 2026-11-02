@@ -97,9 +97,3 @@
   opacity: 0.85;
 }
 
-.welcome-modal__video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
