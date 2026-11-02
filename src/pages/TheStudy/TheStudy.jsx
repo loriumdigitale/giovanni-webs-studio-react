@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StudySection } from "./Section/StudySection.jsx";
 
-const MOBILE_BREAKPOINT = "(max-width: 767px)";
 
 const studySections = [
   {
@@ -62,20 +61,6 @@ const studySections = [
 
 export function TheStudy() {
   const [openSectionId, setOpenSectionId] = useState(null);
-  const [isMobile, setIsMobile] = useState(() =>
-    window.matchMedia(MOBILE_BREAKPOINT).matches,
-  );
-  const [isIntroFinished, setIsIntroFinished] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT);
-    const updateViewport = (event) => setIsMobile(event.matches);
-
-    setIsMobile(mediaQuery.matches);
-    mediaQuery.addEventListener("change", updateViewport);
-
-    return () => mediaQuery.removeEventListener("change", updateViewport);
-  }, []);
 
   const toggleSection = (sectionId) => {
     setOpenSectionId((currentSectionId) =>
@@ -83,30 +68,9 @@ export function TheStudy() {
     );
   };
 
-  const introVideo = isMobile
-    ? "/intro/lorium_intro_mobile.webm"
-    : "/intro/lorium_intro_desktop.webm";
 
   return (
-    <>
-      {!isIntroFinished && (
-        <div className="the-study-intro" aria-hidden="true">
-          <video
-            key={introVideo}
-            className="the-study-intro__video"
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            onEnded={() => setIsIntroFinished(true)}
-            onError={() => setIsIntroFinished(true)}
-          >
-            <source src={introVideo} type="video/webm" />
-          </video>
-        </div>
-      )}
-
-      {isIntroFinished && (
+    <div className="the-study__main container-wrapper">
         <div className="the-study__main container-wrapper">
           <h1 className="the-study__title">
             <span className="the-study__title-text">
@@ -126,8 +90,6 @@ export function TheStudy() {
               </StudySection>
             ))}
           </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }
