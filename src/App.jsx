@@ -1,7 +1,8 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop.jsx";
+import { WelcomeModal } from "./components/WelcomeModal/WelcomeModal.jsx";
 import { Navbar } from "./components/layout/Navbar/Navbar.jsx";
 import { Home } from "./pages/Home.jsx";
 import { AboutMe } from "./pages/AboutMe/AboutMe.jsx";
@@ -15,6 +16,7 @@ import { CustomScrollbar } from "./components/ui/CustomScrollbar/CustomScrollbar
 
 export function App() {
   const location = useLocation();
+  const [isWelcomeOpen, setIsWelcomeOpen] = useState(true);
 
   useEffect(() => {
     // Le decimos al navegador: "no restaures el scroll vos solo, yo me encargo"
@@ -26,6 +28,10 @@ export function App() {
   }, []);
   return (
     <div className="app-shell">
+      <WelcomeModal
+        isOpen={isWelcomeOpen}
+        onClose={() => setIsWelcomeOpen(false)}
+      />
       {/* Crosshair global: cambia estas props para ajustar su aspecto y comportamiento.
 
           color: color CSS hexadecimal; thickness: grosor en px (0.5–8); opacity: opacidad (0–1).
