@@ -1,4 +1,4 @@
-import loriumLargeLogo from "../../../assets/logos/LoriumIcon-grdient-white-v1.svg";
+import { LoriumLogo } from "../../ui/LoriumLogo/LoriumLogo.jsx";
 
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export function Footer() {
     <div className="footer__container">
       <footer className="footer container-wrapper">
         <div className="footer__brand">
-          <img src={loriumLargeLogo} className="footer__brand-logo" alt="" />
+          <LoriumLogo className="footer__brand-logo" title="" />
           <p className="footer__brand-name text-gradient">Lorium</p>
         </div>
         <div className="footer__socials">
