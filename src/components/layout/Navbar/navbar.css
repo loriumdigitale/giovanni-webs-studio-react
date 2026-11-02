@@ -26,7 +26,14 @@
 .nav__brand {
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.65rem;
+}
+
+.nav__brand-name {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
 }
 
 /* Link para volver a la página principal */
@@ -41,7 +48,7 @@
 
 /* Logo Lorium */
 .nav__brand-logo {
-  width: var(--size-3xl);
+  width: var(--size-2xl);
   height: auto;
 }
 
