@@ -15,6 +15,7 @@ export function Navbar() {
         <div className="nav__brand">
           <NavLink to="/" className="nav__brand-link">
             <LoriumLogo className="nav__brand-logo" />
+            <span className="nav__brand-name text-gradient">Lorium</span>
           </NavLink>
         </div>
 
