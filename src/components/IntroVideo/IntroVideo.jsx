@@ -29,6 +29,7 @@ export function IntroVideo() {
         key={videoSource}
         className="intro-video__media"
         autoPlay
+        muted
         playsInline
         preload="auto"
         onEnded={() => setIsFinished(true)}
