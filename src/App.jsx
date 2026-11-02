@@ -11,7 +11,8 @@ import { Catalog } from "./pages/Catalog/Catalog.jsx";
 import { TheStudy } from "./pages/TheStudy/TheStudy.jsx";
 import { Footer } from "./components/layout/Footer/Footer.jsx";
 import { AnimatedMotion } from "./components/ui/AnimatedMotion/AnimatedMotion.jsx";
-import { ProceduralBlobs } from "./components/ui/ProceduralBlobs/ProceduralBlobs.jsx";
+import Crosshair from "./components/ui/Crosshair/Crosshair.jsx";
+import { CrosshairAutoplay } from "./components/ui/Crosshair/CrosshairAutoplay.jsx";
 import { CustomScrollbar } from "./components/ui/CustomScrollbar/CustomScrollbar.jsx";
 
 export function App() {
@@ -29,7 +30,33 @@ export function App() {
 
   return (
     <div className="app-shell">
-      <ProceduralBlobs />
+      {/* Crosshair global: cambia estas props para ajustar su aspecto y comportamiento.
+
+          color: color CSS hexadecimal; thickness: grosor en px (0.5–8); opacity: opacidad (0–1).
+
+          lineStyle: solid, dashed o dotted; gap: apertura alrededor del puntero en px; fade: desvanecimiento (0–1).
+
+          smoothing: suavidad del movimiento (0–1; valor menor = respuesta más rápida);
+
+          showCoordinates: mostrar/ocultar coordenadas.
+
+          targetEffect: lock, glitch o none; targetSelector: selector CSS de los elementos que reaccionan.
+
+          clickPulse: pulso al hacer clic;
+
+          hideCursor: ocultar cursor nativo; blendMode: modo de mezcla.
+      */}
+      <Crosshair
+        color="#753ce9"
+        opacity={0.70}
+        thickness={2}
+        smoothing={0.18}
+        showCoordinates={false}
+        targetEffect="lock"
+        clickPulse={true}
+        hideCursor={true}
+      />
+      <CrosshairAutoplay />
       <CustomScrollbar />
       {/* Definición global del gradiente, reutilizable por cualquier ícono SVG */}
       <svg

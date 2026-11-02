@@ -156,3 +156,4 @@
   background-color: var(--color-secondary);
   border-color: var(--color-primary);
 }
+.nav__span{color:var(--color-primary)} .header{margin-bottom:var(--space-lg);background:rgb(250 248 252 / 88%)}

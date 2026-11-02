@@ -1,0 +1,74 @@
+.lorium-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.lorium-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 140px;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 1.5rem;
+  border: 0;
+  border-radius: var(--border-rad-md);
+  background: #e8def5;
+  color: #614098;
+  font: inherit;
+  text-align: center;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.lorium-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--border-rad-xl);
+  background: rgba(255, 255, 255, 0.8);
+  color: #614098;
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+.lorium-card--games {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.lorium-card--games .lorium-card__badge {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.lorium-card--services {
+  background: #f0eafa;
+  color: #614098;
+}
+
+.lorium-card__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.lorium-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 700px) {
+  .lorium-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}

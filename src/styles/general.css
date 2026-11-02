@@ -18,22 +18,22 @@
   --project-card-width: 260px;
 
   /* variables de colores */
-  --color-border-surface: #2a2a2a;
-  --color-shadow: #0f0f0f;
-  --color-text-primary: #fcbf49;
-  --color-text-secondary: #c4c4c4;
-  --color-text-tertiary: #868686;
+  --color-border-surface: #e6def2;
+  --color-shadow: #e6def2;
+  --color-text-primary: #7450bc;
+  --color-text-secondary: #83778e;
+  --color-text-tertiary: #a398ae;
 
   /* nuevos colores */
-  --color-surface: #18033e;
-  --color-surface-op2: #1c0b3d;
-  --color-border-surface-op2: #000;
-  --color-bg: #030108;
-  --color-primary: #24075f;
-  --color-secondary: #6e20f8;
-  --color-tertiary: #fe07fb;
-  --color-text: #eee;
-  --color-secondary-text: #aaa;
+  --color-surface: #eee8f7;
+  --color-surface-op2: #f6f2fa;
+  --color-border-surface-op2: #e6def2;
+  --color-bg: #faf8fc;
+  --color-primary: #43265e;
+  --color-secondary: #7951c8;
+  --color-tertiary: #b08ce8;
+  --color-text: #382548;
+  --color-secondary-text: #81758e;
 
   --gradient-lorium: linear-gradient(
     120deg,
@@ -133,6 +133,22 @@ body.modal-open {
   overflow: hidden;
 }
 
+/* La Crosshair oculta el cursor globalmente; dentro de cualquier modal abierta
+   se vuelve a mostrar para que la interacción conserve una referencia visible. */
+.crosshair-cursor-hidden dialog[open],
+.crosshair-cursor-hidden dialog[open] * {
+  cursor: auto !important;
+}
+
+.crosshair-cursor-hidden dialog[open] button:not(:disabled),
+.crosshair-cursor-hidden dialog[open] a[href] {
+  cursor: pointer !important;
+}
+
+.crosshair-cursor-hidden dialog[open] button:disabled {
+  cursor: not-allowed !important;
+}
+
 main {
   padding: 0 var(--space-sm);
 }
@@ -191,4 +207,10 @@ dialog :focus-visible {
 * {
   scrollbar-color: var(--color-secondary) transparent;
   scrollbar-width: none;
+}
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
 }

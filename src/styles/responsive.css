@@ -6,12 +6,6 @@
 }
 
 @media (max-width: 500px) {
-  .nav__span {
-    gap: 0.35rem;
-    padding: 0.4em 0.7em;
-    font-size: 9px;
-  }
-
   .nav__toggle-bar {
     width: 15px;
     height: 2px;

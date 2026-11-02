@@ -109,7 +109,7 @@ export function ContactForm() {
   }
 
   return (
-    <section className="contact-form reveal-on-scroll">
+    <section id="consulta" className="contact-form reveal-on-scroll" aria-label="Formulario de consulta">
       <form onSubmit={handleSubmit}>
         <FormHeader />
 

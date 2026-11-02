@@ -1,38 +1,50 @@
-import { services } from "../../../data/services.js";
+import WindowIcon from "bootstrap-icons/icons/window.svg?react";
+import CodeSlashIcon from "bootstrap-icons/icons/code-slash.svg?react";
+import SlidersIcon from "bootstrap-icons/icons/sliders.svg?react";
+
+const services = [
+  {
+    title: "Sitios a medida",
+    description:
+      "Diseño y desarrollo una web que se adapte a tu idea y a su contenido.",
+    icon: WindowIcon,
+  },
+  {
+    title: "Desarrollo frontend",
+    description:
+      "Transformo diseños en interfaces claras, adaptables y fáciles de usar.",
+    icon: CodeSlashIcon,
+  },
+  {
+    title: "Desarrollo Backend",
+    description:
+      "Desarrollo la lógica y las funcionalidades que permiten que una aplicación funcione, conectando APIs, bases de datos y servicios externos.",
+    icon: SlidersIcon,
+  },
+];
 
 export function Services() {
   return (
-    <section className="services">
-      <span className="services__badge"> Servicios </span>
-
-      <h2 className="services__title">Enterate de los servicios de Lorium</h2>
-
-      <div className="services__container">
-        {services.map((service) => (
-          <article className="services__card" key={service.service}>
-            {typeof service.icon === "function" && (
-              <service.icon
-                className="services__card-icon"
-                aria-hidden="true"
-              />
-            )}
-
-            <h3 className="services__card-title">{service.service}</h3>
-
-            <p className="services__card-subtitle">¿Qué ofrece?</p>
-
-            <ul className="services__card-list">
-              {service.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+    <section className="services" aria-labelledby="services-title">
+      <div className="services__intro">
+        <span className="services__badge">01&nbsp; · &nbsp;LO QUE HAGO</span>
+        <h2 id="services-title" className="services__title">
+          De la idea al sitio.
+        </h2>
+        <p>Me ocupo de cada detalle para que tu web se sienta propia.</p>
+      </div>
+      <div className="services__features">
+        {services.map(({ title, description, icon: Icon }, index) => (
+          <article
+            className={`services__feature services__feature--${index + 1}`}
+            key={title}
+          >
+            <Icon className="services__feature-icon" aria-hidden="true" />
+            <span className="services__feature-number">0{index + 1}</span>
+            <h3 className="services__feature-title">{title}</h3>
+            <p className="services__feature-description">{description}</p>
           </article>
         ))}
-
-        {/* Card estática, mismo estilo, no viene del .map() */}
-        <article className="services__card services__card--soon">
-          <p className="services__card-soon-text">Más servicios próximamente</p>
-        </article>
       </div>
     </section>
   );
