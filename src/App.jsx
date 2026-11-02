@@ -1,9 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { useEffect } from "react";
-import { useState } from "react";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop.jsx";
-import { WelcomeModal } from "./components/WelcomeModal/WelcomeModal.jsx";
 import { Navbar } from "./components/layout/Navbar/Navbar.jsx";
 import { Home } from "./pages/Home.jsx";
 import { AboutMe } from "./pages/AboutMe/AboutMe.jsx";
@@ -26,8 +24,6 @@ export function App() {
       window.scrollTo(0, 0);
     }
   }, []);
-  const [showWelcome, setShowWelcome] = useState(true);
-
   return (
     <div className="app-shell">
       {/* Crosshair global: cambia estas props para ajustar su aspecto y comportamiento.
@@ -85,11 +81,6 @@ export function App() {
           </linearGradient>
         </defs>
       </svg>
-      <WelcomeModal
-        isOpen={showWelcome}
-        onClose={() => setShowWelcome(false)}
-      />
-
       <ScrollToTop />
       <Navbar />
       <main className="container-wrapper">
