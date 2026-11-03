@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { LoriumLogo } from "../../ui/LoriumLogo/LoriumLogo.jsx";
+import { LoriumLogo } from "../../../assets/logos/LoriumLogo.jsx";
 import JellyRadio from "../../ui/JellyRadio/JellyRadio.jsx";
 
 const NAV_ITEMS = [
