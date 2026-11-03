@@ -19,16 +19,18 @@ const spring = (stiffness, mass, bounce) => ({
   mass,
 });
 
-const Chip = forwardRef(function Chip({ motionValues, children, ...rest }, ref) {
+const Chip = forwardRef(function Chip({ motionValues, navigation, children, ...rest }, ref) {
   const transform = useTransform(
     () =>
       `translateX(${motionValues.x.get()}px) scale(${motionValues.sx.get()}, ${motionValues.sy.get()})`,
   );
 
+  const Component = navigation ? motion.a : motion.button;
+
   return (
-    <motion.button ref={ref} style={{ transform }} {...rest}>
+    <Component ref={ref} style={{ transform }} {...rest}>
       {children}
-    </motion.button>
+    </Component>
   );
 });
 
@@ -290,18 +292,23 @@ export default function JellyRadio({
         <Chip
           key={item.value}
           motionValues={getMotionValues(index)}
+          navigation={navigation}
           ref={(element) => {
             chipRefs.current[index] = element;
           }}
-          type="button"
-          role={navigation ? "link" : "radio"}
+          type={navigation ? undefined : "button"}
+          href={navigation ? item.value : undefined}
+          role={navigation ? undefined : "radio"}
           aria-checked={navigation ? undefined : index === at}
           aria-current={navigation && index === at ? "page" : undefined}
           tabIndex={navigation || index === at ? 0 : -1}
           disabled={disabled || !!item.disabled}
           className="jelly-radio__chip"
           data-on={index === at ? "true" : "false"}
-          onClick={(event) => commit(index, event.detail === 0)}
+          onClick={(event) => {
+            if (navigation) event.preventDefault();
+            commit(index, event.detail === 0);
+          }}
           onKeyDown={navigation ? undefined : (event) => handleKeyDown(event, index)}
         >
           <span className="jelly-radio__skin">
