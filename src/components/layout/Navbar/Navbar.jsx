@@ -1,9 +1,19 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { LoriumLogo } from "../../ui/LoriumLogo/LoriumLogo.jsx";
+import JellyRadio from "../../ui/JellyRadio/JellyRadio.jsx";
+
+const NAV_ITEMS = [
+  { value: "/", label: "Inicio" },
+  { value: "/about-me", label: "Sobre mí" },
+  { value: "/the-study", label: "El estudio" },
+  { value: "/catalog", label: "Proyectos" },
+];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const closeMenu = () => setIsOpen(false);
 
@@ -32,58 +42,25 @@ export function Navbar() {
           <span className="nav__toggle-bar"></span>
         </button>
 
-        <ul
+        <JellyRadio
           id="nav-list"
           className={isOpen ? "nav__list nav__list--open" : "nav__list"}
-        >
-          <li className="nav__item">
-            <NavLink
-              to="/"
-              end
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              Inicio
-            </NavLink>
-          </li>
-
-          <li className="nav__item">
-            <NavLink
-              to="/about-me"
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              Sobre mí
-            </NavLink>
-          </li>
-
-          <li className="nav__item">
-            <NavLink
-              to="/the-study"
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              El estudio
-            </NavLink>
-          </li>
-          <li className="nav__item">
-            <NavLink
-              to="/catalog"
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                isActive ? "nav__link nav__link--active" : "nav__link"
-              }
-            >
-              Proyectos
-            </NavLink>
-          </li>
-        </ul>
+          navigation
+          ariaLabel="Navegación principal"
+          items={NAV_ITEMS}
+          value={location.pathname}
+          onChange={(path) => {
+            navigate(path);
+            closeMenu();
+          }}
+          chipColor="transparent"
+          activeColor="var(--color-secondary)"
+          textColor="var(--color-text)"
+          activeTextColor="var(--color-text)"
+          size="md"
+          radius={8}
+          gap={8}
+        />
       </nav>
     </header>
   );
