@@ -54,6 +54,8 @@ export default function JellyRadio({
   disabled = false,
   ariaLabel = "Options",
   className = "",
+  id,
+  navigation = false,
 }) {
   const list = items.map((item) =>
     typeof item === "string" ? { value: item, label: item } : item,
@@ -267,7 +269,8 @@ export default function JellyRadio({
   return (
     <div
       ref={groupRef}
-      role="radiogroup"
+      id={id}
+      role={navigation ? "group" : "radiogroup"}
       aria-label={ariaLabel}
       data-disabled={disabled ? "" : undefined}
       className={`jelly-radio${className ? ` ${className}` : ""}`}
@@ -291,14 +294,15 @@ export default function JellyRadio({
             chipRefs.current[index] = element;
           }}
           type="button"
-          role="radio"
-          aria-checked={index === at}
-          tabIndex={index === at ? 0 : -1}
+          role={navigation ? "link" : "radio"}
+          aria-checked={navigation ? undefined : index === at}
+          aria-current={navigation && index === at ? "page" : undefined}
+          tabIndex={navigation || index === at ? 0 : -1}
           disabled={disabled || !!item.disabled}
           className="jelly-radio__chip"
           data-on={index === at ? "true" : "false"}
           onClick={(event) => commit(index, event.detail === 0)}
-          onKeyDown={(event) => handleKeyDown(event, index)}
+          onKeyDown={navigation ? undefined : (event) => handleKeyDown(event, index)}
         >
           <span className="jelly-radio__skin">
             {item.icon ? (
