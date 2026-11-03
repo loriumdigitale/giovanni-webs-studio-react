@@ -218,12 +218,10 @@ export default function JellyRadio({
   );
 
   const commit = (index, instant) => {
-    if (
-      disabled ||
-      index === at ||
-      !list[index] ||
-      list[index].disabled
-    ) {
+    if (disabled || !list[index] || list[index].disabled) return;
+
+    if (index === at) {
+      if (navigation) onChange?.(list[index].value, index);
       return;
     }
 
