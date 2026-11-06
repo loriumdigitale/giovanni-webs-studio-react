@@ -14,6 +14,7 @@ import { AnimatedMotion } from "./components/ui/AnimatedMotion/AnimatedMotion.js
 export function App() {
   const location = useLocation();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   useEffect(() => {
     // Le decimos al navegador: "no restaures el scroll vos solo, yo me encargo"
@@ -34,7 +35,7 @@ export function App() {
       />
 
       <div className="app-shell__content">
-        <IntroVideo />
+        <IntroVideo onComplete={() => setIsIntroComplete(true)} />
         <svg
           width="0"
           height="0"
@@ -66,7 +67,10 @@ export function App() {
           <AnimatePresence mode="wait">
             <AnimatedMotion key={location.pathname}>
               <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<Home />} />
+                <Route
+                  path="/"
+                  element={<Home isIntroComplete={isIntroComplete} />}
+                />
                 <Route path="/about-me" element={<AboutMe />} />
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/the-study" element={<TheStudy />} />

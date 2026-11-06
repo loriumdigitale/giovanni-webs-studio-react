@@ -1,6 +1,28 @@
-export function Hero() {
+import { useEffect, useRef, useState } from "react";
+
+export function Hero({ isIntroComplete }) {
+  const heroRef = useRef(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    if (!isIntroComplete || shouldAnimate || !heroRef.current) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+
+      setShouldAnimate(true);
+      observer.disconnect();
+    });
+
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, [isIntroComplete, shouldAnimate]);
+
+  const typingClass = (variant) =>
+    `hero__typing hero__typing--${variant}${shouldAnimate ? " hero__typing--active" : ""}`;
+
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section ref={heroRef} className="hero" aria-labelledby="hero-title">
       <div className="hero__content">
         <p className="hero__eyebrow">
           <span aria-hidden="true" /> DESARROLLO WEB INDEPENDIENTE
@@ -33,9 +55,13 @@ export function Hero() {
           <code>
             &lt;main&gt;
             <br />
-            &nbsp; &lt;h1&gt; Fabricio Giovanni Vedia Vega &lt;/h1&gt;
+            &nbsp; &lt;h1&gt;{" "}
+            <span className={typingClass("name")}>Fabricio Giovanni Vedia Vega</span>{" "}
+            &lt;/h1&gt;
             <br />
-            &nbsp; &lt;p&gt; Made in Argentina &lt;/p&gt;
+            &nbsp; &lt;p&gt;{" "}
+            <span className={typingClass("location")}>Made in Argentina</span>{" "}
+            &lt;/p&gt;
             <br />
             &lt;/main&gt;
           </code>

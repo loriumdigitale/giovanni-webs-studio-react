@@ -5,10 +5,10 @@ import { ContactForm } from "../components/sections/ContactForm/ContactForm.jsx"
 import { ContactSection } from "../components/sections/ContactSection/ContactSection.jsx";
 import { LoriumCards } from "../components/sections/LoriumCards/LoriumCards.jsx";
 
-export function Home() {
+export function Home({ isIntroComplete }) {
   return (
     <>
-      <Hero />
+      <Hero isIntroComplete={isIntroComplete} />
       <Services />
       <Projects />
       <ContactSection />

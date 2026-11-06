@@ -482,6 +482,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero__typing--name.hero__typing--active,
+  .hero__typing--location.hero__typing--active {
+    width: auto;
+    overflow: visible;
+    border-right: 0;
+    animation: none;
+  }
+
   .app-shell__content,
   .studio-sidebar,
   .studio-sidebar__link,
