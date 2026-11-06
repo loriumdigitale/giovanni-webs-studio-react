@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Optimizer · rendimiento.css  (LA ARMADURA CSS)
+
+   Clases globales en <html>:   .perf-low | .perf-medium | .perf-high
+   Clase de activación:          .is-triggered (la inyecta useIntersectionTrigger)
+
+   Jerarquía (de menor a mayor costo):
+     sin clase  → estado seguro y estático (si el script falló, todo se ve)
+     .perf-low    → estático o fundido lineal de opacidad
+     .perf-medium → opacity + transform simples y sombras estáticas
+     .perf-high   → único lugar permitido para efectos de GPU
+
+   REGLA: filter, backdrop-filter, sombras dinámicas, transformaciones 3D y
+   will-change SOLO pueden aparecer dentro de un selector .perf-high.
+   ========================================================================== */
+
+/* --- Variables por perfil (solo valores baratos: tiempos y distancias) ---- */
+:root {
+  --perf-duracion: 0.2s;
+  --perf-distancia: 0px;
+}
+
+.perf-low {
+  --perf-duracion: 0.2s;
+  --perf-distancia: 0px;
+}
+
+.perf-medium {
+  --perf-duracion: 0.4s;
+  --perf-distancia: 12px;
+}
+
+.perf-high {
+  --perf-duracion: 0.7s;
+  --perf-distancia: 28px;
+}
+
+/* ==========================================================================
+   .perf-reveal · entrada de elementos al activarse el sensor
+   ========================================================================== */
+
+/* Base (low): fundido lineal de opacidad */
+.perf-reveal {
+  transition: opacity var(--perf-duracion) linear;
+}
+
+/* Oculto solo cuando ya hay perfil: si el script no corrió, el contenido se ve */
+:is(.perf-low, .perf-medium, .perf-high) .perf-reveal:not(.is-triggered) {
+  opacity: 0;
+}
+
+.perf-reveal.is-triggered {
+  opacity: 1;
+}
+
+/* Medium: opacity + translate */
+.perf-medium .perf-reveal {
+  transition:
+    opacity var(--perf-duracion) ease-out,
+    transform var(--perf-duracion) ease-out;
+}
+
+.perf-medium .perf-reveal:not(.is-triggered) {
+  transform: translateY(var(--perf-distancia));
+}
+
+.perf-medium .perf-reveal.is-triggered {
+  transform: none;
+}
+
+/* High: translate 3D + escala + blur. will-change solo mientras está pendiente */
+.perf-high .perf-reveal {
+  transition:
+    opacity var(--perf-duracion) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--perf-duracion) cubic-bezier(0.22, 1, 0.36, 1),
+    filter var(--perf-duracion) ease-out;
+}
+
+.perf-high .perf-reveal:not(.is-triggered) {
+  transform: translate3d(0, var(--perf-distancia), 0) scale(0.97);
+  filter: blur(8px);
+  will-change: opacity, transform, filter;
+}
+
+.perf-high .perf-reveal.is-triggered {
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+/* ==========================================================================
+   .perf-glass · superficies translúcidas
+   ========================================================================== */
+
+/* Low: sólido */
+.perf-glass {
+  background: var(--color-surface);
+}
+
+/* Medium: semitransparente, sin blur */
+.perf-medium .perf-glass {
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+}
+
+/* High: vidrio esmerilado */
+.perf-high .perf-glass {
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* ==========================================================================
+   .perf-elevacion · sombras
+   ========================================================================== */
+
+/* Low: sin sombra, solo borde */
+.perf-elevacion {
+  border: 1px solid var(--color-border-surface-op2);
+}
+
+/* Medium: sombra estática */
+.perf-medium .perf-elevacion {
+  box-shadow: 0 4px 12px
+    color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+/* High: sombra en capas que reacciona al hover */
+.perf-high .perf-elevacion {
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--color-primary) 8%, transparent),
+    0 12px 32px color-mix(in srgb, var(--color-primary) 14%, transparent);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.perf-high .perf-elevacion:hover {
+  box-shadow:
+    0 4px 8px color-mix(in srgb, var(--color-primary) 10%, transparent),
+    0 24px 48px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  transform: translateY(-2px);
+  will-change: transform, box-shadow;
+}
+
+/* ==========================================================================
+   .perf-3d · deformación 3D (solo high)
+   ========================================================================== */
+
+.perf-high .perf-3d {
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.4s ease;
+}
+
+.perf-high .perf-3d:hover {
+  transform: perspective(900px) rotateX(4deg) rotateY(-6deg) translateZ(0);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Utilidades de visibilidad por perfil
+   ========================================================================== */
+
+/* Visible solo en high (oculto también si todavía no hay perfil) */
+.perf-solo-high:not(:where(.perf-high *)) {
+  display: none;
+}
+
+/* Visible solo en low */
+.perf-medium .perf-solo-low,
+.perf-high .perf-solo-low {
+  display: none;
+}
+
+/* Oculto en low */
+.perf-low .perf-oculto-low {
+  display: none;
+}
+
+/* ==========================================================================
+   REGLA DE ORO (defensa en profundidad)
+   El script ya fuerza .perf-low con reduced-motion; esto garantiza que nada
+   se mueva ni se desenfoque aunque el script no haya corrido.
+   !important es intencional: esta regla debe ganar siempre.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .perf-reveal,
+  .perf-reveal:not(.is-triggered),
+  .perf-glass,
+  .perf-elevacion,
+  .perf-3d {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+}
