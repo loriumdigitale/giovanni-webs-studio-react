@@ -6,7 +6,7 @@ export const webDeveloper = [
     image: robleSur,
     category: "Desarrollo Web",
     favorite: true,
-    type: "Página Web",
+    developedBy: "Lorium",
     name: "Roble Sur v1",
     shortDescription: "Mueblería a medida",
     description:

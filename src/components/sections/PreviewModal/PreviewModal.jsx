@@ -69,7 +69,9 @@ export function PreviewModal({ project, isOpen, onClose }) {
 
           <div className="preview-modal__content">
             <div className="preview-modal__heading">
-              <span className="preview-modal__type">{project.type}</span>
+              <span className="preview-modal__developed-by">
+                {project.developedBy}
+              </span>
               <h2 className="preview-modal__title">{project.name}</h2>
             </div>
 

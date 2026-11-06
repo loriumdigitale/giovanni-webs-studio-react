@@ -14,7 +14,9 @@ export function ProjectCard({ project }) {
             alt={project.name}
             className="project-card__img"
           />
-          <span className="project-card__type">{project.type}</span>
+          <span className="project-card__type project-card__developed-by">
+            {project.developedBy}
+          </span>
         </div>
 
         <div className="project-card__info">
