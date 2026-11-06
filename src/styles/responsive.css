@@ -34,42 +34,81 @@
 }
 
 @media (min-width: 700px) {
-  /* Preview Modal */
+  /* Preview Modal: tablet */
   .preview-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl);
+    padding: var(--space-2xl);
   }
 
   .preview-modal__container {
-    display: flex;
-    flex-direction: row;
-
-    width: auto;
-    height: auto;
-
-    max-width: 1000px;
-    max-height: 85dvh;
-
-    border: 2px solid var(--color-primary);
-    border-radius: var(--border-rad-md);
-    overflow: hidden;
-  }
-
-  /* Imagen Preview Modal */
-  .preview-modal__img {
-    width: 45%;
-    height: auto;
-    max-height: 85dvh;
-    aspect-ratio: auto;
-    flex-shrink: 0;
+    --preview-pad: var(--space-xl);
+    border-radius: var(--border-rad-xl);
   }
 
   .preview-modal__content {
-    flex: 1;
-    overflow-y: auto;
-    max-height: 85dvh;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "heading heading"
+      "media   media"
+      "main    aside";
+    column-gap: var(--space-xl);
+  }
+
+  .preview-modal__media {
+    aspect-ratio: 2 / 1;
+    padding: var(--space-lg);
+  }
+
+  /* Dos columnas independientes: descripción + meta | tecnologías + botones */
+  .preview-modal__main,
+  .preview-modal__aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .preview-modal__main {
+    grid-area: main;
+  }
+
+  .preview-modal__aside {
+    grid-area: aside;
+  }
+}
+
+@media (min-width: 1100px) {
+  /* Preview Modal: desktop (texto a la izquierda, imagen a la derecha) */
+  .preview-modal {
+    padding: var(--space-3xl);
+  }
+
+  .preview-modal__container {
+    --preview-pad: var(--space-2xl);
+  }
+
+  .preview-modal__content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-areas:
+      "heading     heading"
+      "description media"
+      "technologies media"
+      "meta        media"
+      "actions     media";
+    column-gap: var(--space-2xl);
+  }
+
+  .preview-modal__heading {
+    margin-bottom: var(--space-md);
+  }
+
+  .preview-modal__media {
+    aspect-ratio: auto;
+    min-height: 20rem;
+    padding: var(--space-xl);
+  }
+
+  .preview-modal__main,
+  .preview-modal__aside {
+    display: contents;
   }
 }
 

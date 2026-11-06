@@ -1,8 +1,18 @@
-/* Modal */
+/* ==========================================================================
+   Preview Modal
+   Estructura: dialog > container > header + content (grid)
+   Mobile first: los breakpoints (700px y 1100px) están en styles/responsive.css
+   ========================================================================== */
+
+/* Modal (fondo con blur) */
 .preview-modal {
   position: fixed;
   inset: 0;
   z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
   height: 100dvh;
@@ -11,126 +21,288 @@
   max-height: none;
 
   margin: 0;
-  padding: 0;
+  padding: var(--space-sm);
 
   border: none;
-  background: transparent;
+  background: color-mix(in srgb, var(--color-primary) 55%, transparent);
   backdrop-filter: blur(20px);
 }
 
+/* Contenedor (tarjeta flotante) */
 .preview-modal__container {
-  position: relative;
+  --preview-pad: var(--space-lg);
 
   width: 100%;
-  height: 100%;
+  max-width: 1240px;
+  max-height: 100%;
 
-  max-width: none;
-  max-height: none;
+  background: var(--color-bg);
+  color: var(--color-text);
 
-  margin: 0;
-
-  background: var(--color-surface);
-  color: var(--color-secondary-text);
-
+  border-radius: var(--border-rad-lg);
+  box-shadow: 0 24px 70px
+    color-mix(in srgb, var(--color-primary) 35%, transparent);
   overflow-y: auto;
 }
 
-.preview-modal__close {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  z-index: 1;
+/* Cabecera con el botón de cierre a la derecha */
+.preview-modal__header {
+  display: flex;
+  justify-content: flex-end;
 
-  width: 32px;
-  height: 32px;
+  padding: var(--space-md) var(--preview-pad);
+  border-bottom: 1px solid var(--color-border-surface-op2);
+}
+
+.preview-modal__close {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  padding: var(--space-xs) var(--space-md);
+
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-surface-op2);
+  border-radius: var(--border-rad-3xl);
+  cursor: pointer;
+}
+
+.preview-modal__close-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Contenido: grid con áreas (cambia por breakpoint en responsive.css) */
+.preview-modal__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "heading"
+    "media"
+    "description"
+    "technologies"
+    "meta"
+    "actions";
+  row-gap: var(--space-lg);
+
+  padding: var(--preview-pad);
+}
+
+/* Wrappers solo para el layout de tablet: en mobile y desktop no existen */
+.preview-modal__main,
+.preview-modal__aside {
+  display: contents;
+}
+
+/* Tipo + título */
+.preview-modal__heading {
+  grid-area: heading;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.preview-modal__type {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  justify-self: start;
+
+  font-family: "Courier New", monospace;
+  font-size: var(--font-size-xs);
+  color: var(--color-secondary);
+}
+
+.preview-modal__type::before {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.preview-modal__title {
+  font-family: Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+/* Imagen: panel con padding, la miniatura se ajusta sin recortarse */
+.preview-modal__media {
+  grid-area: media;
+
+  /* el tamaño lo define el panel, no la imagen */
+  contain: size;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: var(--color-text);
-  background: rgb(0 0 0 / 40%);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
+  aspect-ratio: 8 / 7;
+  padding: var(--space-md);
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-surface-op2);
+  border-radius: var(--border-rad-sm);
+  overflow: hidden;
 }
 
 .preview-modal__img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-}
+  width: auto;
+  height: 100%;
+  max-width: 100%;
 
-.preview-modal__content {
-  padding: var(--space-lg);
-}
-
-/* Tipo de proyecto */
-.preview-modal__type {
-  font-size: var(--font-size-xs);
-  color: var(--color-secondary-text);
-}
-
-/* Título del proyecto */
-.preview-modal__title {
-  font-size: var(--font-size-lg);
-  color: var(--color-text);
-  margin-bottom: var(--space-sm);
+  object-fit: contain;
+  border-radius: var(--border-rad-2xs);
+  box-shadow: 0 12px 32px
+    color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 
 /* Descripción */
 .preview-modal__description {
-  font-size: var(--font-size-sm);
-  color: var(--color-secondary-text);
-  margin-bottom: var(--space-md);
+  grid-area: description;
+
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  color: var(--color-text);
 }
 
-/* Tecnologias */
+/* Etiquetas pequeñas (tecnologías, duración, alcance) */
+.preview-modal__technologies-title,
+.preview-modal__duration-title,
+.preview-modal__scope-title {
+  font-family: "Courier New", monospace;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-secondary-text);
+}
+
+/* Tecnologías */
+.preview-modal__technologies-container {
+  grid-area: technologies;
+  display: grid;
+  gap: var(--space-sm);
+}
+
 .preview-modal__technologies {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
-  margin-bottom: var(--space-md);
+}
+
+.preview-modal__technologies .technology {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--border-rad-3xl);
+}
+
+.preview-modal__technologies .technology::before {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Texto más oscuro para contraste sobre el fondo claro de la tarjeta */
+.preview-modal__technologies .technology--html {
+  color: #b8431d;
+}
+
+.preview-modal__technologies .technology--css {
+  color: #1a5fa6;
+}
+
+.preview-modal__technologies .technology--javascript {
+  color: #7a6700;
+  background-color: rgb(247 222 30 / 22%);
+}
+
+.preview-modal__technologies .technology--netlify {
+  color: #0a7a6e;
+}
+
+.preview-modal__technologies .technology--github {
+  color: #24292f;
+  background-color: rgb(36 41 47 / 10%);
 }
 
 /* Duración y Alcance */
 .preview-modal__d-s-container {
-  display: flex;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-md);
+  grid-area: meta;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+
+  padding-block: var(--space-md);
+  border-block: 1px solid var(--color-border-surface-op2);
 }
 
-.preview-modal__technologies-title,
-.preview-modal__duration-title,
-.preview-modal__scope-title {
+.preview-modal__duration,
+.preview-modal__scope {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.preview-modal__duration-text,
+.preview-modal__scope-text {
+  font-size: var(--font-size-md);
   color: var(--color-text);
 }
 
 /* Botones */
 .preview-modal__actions {
-  display: flex;
-  gap: var(--space-sm);
+  grid-area: actions;
+  display: grid;
+  gap: var(--space-xs);
 }
 
 .preview-modal__btn {
-  flex: 1;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  text-align: left;
   text-decoration: none;
 
-  padding: var(--space-sm);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text);
-
-  background: var(--color-secondary);
-  border: none;
-  border-radius: var(--border-rad-lg);
+  border-radius: var(--border-rad-3xl);
   cursor: pointer;
 }
 
-.btn--secondary {
-  background: transparent;
+.preview-modal__btn--primary {
+  color: var(--color-bg);
+  background: var(--color-secondary);
   border: 1px solid var(--color-secondary);
+}
+
+.preview-modal__btn--secondary {
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-surface-op2);
+}
+
+.preview-modal__btn-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.preview-modal__btn--secondary .preview-modal__btn-icon {
+  color: var(--color-secondary);
 }
