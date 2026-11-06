@@ -40,6 +40,9 @@ export function PreviewModal({ project, isOpen, onClose }) {
         open
         className="preview-modal"
         isClosing={isClosing}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
       >
         <div className="preview-modal__container">
           <header className="preview-modal__header">
