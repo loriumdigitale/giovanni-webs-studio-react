@@ -32,12 +32,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .reveal-on-scroll {
-    animation-range: entry 0% cover 30%;
-  }
-}
-
 /* Animación de aparicion */
 @keyframes section-fade-in {
   from {

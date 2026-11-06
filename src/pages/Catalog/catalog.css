@@ -1,3 +1,7 @@
+.catalog-main {
+  padding-top: var(--space-xl);
+}
+
 .catalog__filters {
   display: flex;
   flex-wrap: wrap;

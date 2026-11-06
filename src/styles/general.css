@@ -17,12 +17,6 @@
   /* variable ancho de la card */
   --project-card-width: 260px;
 
-  /* variables de colores */
-  --color-border-surface: #e6def2;
-  --color-shadow: #e6def2;
-  --color-text-primary: #7450bc;
-  --color-text-secondary: #83778e;
-  --color-text-tertiary: #a398ae;
 
   /* nuevos colores */
   --color-surface: #eee8f7;
@@ -133,22 +127,6 @@ body.modal-open {
   overflow: hidden;
 }
 
-/* La Crosshair oculta el cursor globalmente; dentro de cualquier modal abierta
-   se vuelve a mostrar para que la interacción conserve una referencia visible. */
-.crosshair-cursor-hidden dialog[open],
-.crosshair-cursor-hidden dialog[open] * {
-  cursor: auto !important;
-}
-
-.crosshair-cursor-hidden dialog[open] button:not(:disabled),
-.crosshair-cursor-hidden dialog[open] a[href] {
-  cursor: pointer !important;
-}
-
-.crosshair-cursor-hidden dialog[open] button:disabled {
-  cursor: not-allowed !important;
-}
-
 main {
   padding: 0 var(--space-sm);
 }
@@ -183,11 +161,15 @@ dialog :focus-visible {
   outline: none;
 }
 
-/* Estilos de scrollbar */
-/* Para Chrome, Safari y Edge */
+/* Scrollbar nativa con los colores del tema */
+html {
+  scrollbar-color: var(--color-secondary) transparent;
+  scrollbar-width: thin;
+}
+
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -196,17 +178,17 @@ dialog :focus-visible {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-secondary);
-  border-radius: var(--border-rad-xs);
+  border: 2px solid transparent;
+  border-radius: var(--border-rad-xl);
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-tertiary);
 }
 
-/* Para Firefox */
-* {
-  scrollbar-color: var(--color-secondary) transparent;
-  scrollbar-width: none;
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
 
 .app-shell {

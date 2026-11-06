@@ -141,10 +141,8 @@ export function Projects() {
       </h2>
 
       <p className="projects__text">
-        Una selección de proyectos que reflejan mi forma de resolver problemas,
-        cuidar los detalles y desarrollar experiencias web funcionales. Detrás
-        de cada uno hay un proceso de análisis, decisiones de diseño y
-        soluciones que dieron forma al resultado final.
+        Cada proyecto representa una nueva oportunidad para experimentar y
+        construir.
       </p>
 
       <div className="projects__carousel" ref={viewportRef}>

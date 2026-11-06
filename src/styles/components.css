@@ -2,11 +2,6 @@
 @import "../components/WelcomeModal/WelcomeModal.css";
 
 /* Scrollbar personalizada */
-@import "../components/ui/CustomScrollbar/customScrollbar.css";
-
-/* Navbar */
-@import "../components/layout/Navbar/navbar.css";
-@import "../components/layout/Navbar/animations.css";
 
 /* Sección: Servicios */
 @import "../components/sections/Services/services.css";

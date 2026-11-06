@@ -60,15 +60,3 @@
   font: 0.58rem monospace;
   letter-spacing: 0.12em;
 }
-
-@media (min-width: 800px) {
-  .contact-section {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-    gap: 2rem;
-    padding: 1.75rem var(--space-2xl);
-  }
-
-  .contact-section__action {
-    justify-self: end;
-  }
-}

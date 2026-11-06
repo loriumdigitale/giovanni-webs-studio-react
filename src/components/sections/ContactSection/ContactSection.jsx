@@ -8,10 +8,10 @@ export function ContactSection() {
       <div className="contact-section__copy">
         <p className="contact-section__eyebrow">03&nbsp; · &nbsp;CONTACTO</p>
         <h2 id="contact-section-title" className="contact-section__title">
-          Me encantaría leer tu idea.
+          ¿Tenés un proyecto en mente?
         </h2>
         <p className="contact-section__description">
-          Contame qué tenés en mente. Te respondo personalmente.
+          Hablemos sobre su desarrollo. Te respondo personalmente.
         </p>
       </div>
       <div className="contact-section__action">

@@ -5,12 +5,12 @@ export function Hero() {
         <p className="hero__eyebrow">
           <span aria-hidden="true" /> DESARROLLO WEB INDEPENDIENTE
         </p>
-        <h1 id="hero-title" className="hero__title" data-crosshair-target>
+        <h1 id="hero-title" className="hero__title">
           Las tecnologías cambian.{" "}
           <span>El producto y la filosofía permanecen.</span>
         </h1>
         <p className="hero__lead">
-          Una forma de pensar el producto, el diseño y el desarrollo web.
+          Desarrollo web pensado para darle forma y funcionalidad a tu proyecto.
         </p>
         <div className="hero__actions">
           <a className="hero__button" href="#proyectos">

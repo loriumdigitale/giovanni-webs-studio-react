@@ -1,8 +1,192 @@
 .lorium-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.lorium-cards__intro {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.55fr);
+  align-items: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  border: 1px solid color-mix(in srgb, var(--color-tertiary) 28%, transparent);
+  border-radius: var(--border-rad-md);
+  background: linear-gradient(
+    120deg,
+    var(--color-primary),
+    color-mix(in srgb, var(--color-primary) 78%, var(--color-secondary))
+  );
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-surface-op2);
+}
+
+.lorium-cards__intro::before {
+  position: absolute;
+  z-index: -1;
+  top: -11rem;
+  right: -7rem;
+  width: 28rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-secondary) 34%, transparent),
+    transparent 68%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.lorium-cards__copy {
+  position: relative;
+  z-index: 3;
+  min-width: 0;
+}
+
+.lorium-cards__intro > .lorium-cards__laser-flow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.34;
+}
+
+.lorium-cards__eyebrow {
+  display: block;
+  margin-bottom: 0.85rem;
+  color: var(--color-tertiary);
+  font: 500 0.68rem/1.4 monospace;
+  letter-spacing: 0.14em;
+}
+
+.lorium-cards__title {
+  margin-bottom: 0.75rem;
+  color: var(--color-surface-op2);
+  font: 400 clamp(1.65rem, 3.5vw, 2.4rem)/1.15 Georgia, serif;
+}
+
+.lorium-cards__description {
+  max-width: 47ch;
+  margin: 0 0 1.25rem;
+  color: color-mix(in srgb, var(--color-surface-op2) 86%, transparent);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.lorium-cards__link {
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--color-surface-op2) 28%, transparent);
+  border-radius: var(--border-rad-xl);
+  background: color-mix(in srgb, var(--color-surface-op2) 9%, transparent);
+  color: var(--color-surface-op2);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.lorium-cards__link span {
+  transition: transform 180ms ease;
+}
+
+.lorium-cards__link:hover,
+.lorium-cards__link:focus-visible {
+  border-color: color-mix(in srgb, var(--color-surface-op2) 62%, transparent);
+  background: color-mix(in srgb, var(--color-surface-op2) 16%, transparent);
+}
+
+.lorium-cards__link:hover span,
+.lorium-cards__link:focus-visible span {
+  transform: translateY(2px);
+}
+
+.lorium-cards__map {
+  position: relative;
+  z-index: 3;
+  justify-self: center;
+  width: min(100%, 220px);
+  aspect-ratio: 220 / 180;
+}
+
+.lorium-cards__map-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-tertiary) 58%, transparent);
+  stroke-width: 1.2;
+}
+
+.lorium-cards__map-core,
+.lorium-cards__map-node {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-surface-op2) 28%, transparent);
+  background: color-mix(in srgb, var(--color-surface-op2) 9%, transparent);
+  color: var(--color-surface-op2);
+  font: 500 0.62rem/1 monospace;
+  letter-spacing: 0.08em;
+}
+
+.lorium-cards__map-core {
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  min-width: 7.5rem;
+  min-height: 3rem;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--color-tertiary);
+  border-radius: 999px;
+  background: var(--color-surface-op2);
+  box-shadow:
+    0 0 0 0.4rem color-mix(in srgb, var(--color-tertiary) 18%, transparent),
+    0 10px 30px color-mix(in srgb, var(--color-primary) 28%, transparent);
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+}
+
+.lorium-cards__map-node {
+  min-height: 1.65rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+}
+
+.lorium-cards__map-node--groups {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.lorium-cards__map-node--services {
+  bottom: 0;
+  left: 0;
+}
+
+.lorium-cards__map-node--games {
+  right: 0;
+  bottom: 0;
+}
+
+.lorium-cards__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 1.25rem 0 2.5rem;
+  scroll-margin-top: var(--space-xl);
 }
 
 .lorium-card {
@@ -64,11 +248,4 @@
   font-size: 1rem;
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.02em;
-}
-
-@media (min-width: 700px) {
-  .lorium-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
 }

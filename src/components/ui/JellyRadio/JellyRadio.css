@@ -82,13 +82,6 @@
   transition: opacity 160ms ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .jelly-radio__chip[data-on="false"]:not(:disabled):hover
-    .jelly-radio__skin::before {
-    opacity: 0.11;
-  }
-}
-
 .jelly-radio__chip:active .jelly-radio__skin {
   transform: scale(0.97);
 }
@@ -100,10 +93,4 @@
 
 .jelly-radio__icon {
   display: inline-flex;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .jelly-radio__chip:active .jelly-radio__skin {
-    transform: none;
-  }
 }

@@ -6,6 +6,7 @@
 }
 
 .about-me__main {
+  padding-top: var(--space-xl);
   margin-bottom: var(--space-lg);
 }
 

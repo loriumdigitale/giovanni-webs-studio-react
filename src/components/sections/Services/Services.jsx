@@ -29,9 +29,9 @@ export function Services() {
       <div className="services__intro">
         <span className="services__badge">01&nbsp; · &nbsp;LO QUE HAGO</span>
         <h2 id="services-title" className="services__title">
-          De la idea al sitio.
+          ¿Qué necesitás desarrollar?
         </h2>
-        <p>Me ocupo de cada detalle para que tu web se sienta propia.</p>
+        <p>Conocé mis servicios.</p>
       </div>
       <div className="services__features">
         {services.map(({ title, description, icon: Icon }, index) => (

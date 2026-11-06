@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/general.css";
 import "./styles/utilities.css";
 import "./styles/components.css";
-import "./styles/responsive.css";
 import App from "./App.jsx";
+import "./styles/responsive.css";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>

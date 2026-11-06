@@ -1,3 +1,7 @@
+.the-study__main {
+  padding-top: var(--space-xl);
+}
+
 .the-study__section-container {
   width: 100%;
   max-width: 600px;

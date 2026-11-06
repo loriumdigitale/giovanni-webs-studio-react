@@ -1,5 +1,5 @@
 .projects {
-  --projects-card-width: clamp(220px, 25vw, 300px);
+  container-type: inline-size;
   --projects-card-gap: clamp(1rem, 2vw, 1.5rem);
   padding: 3rem 0;
   overflow: visible;
@@ -18,13 +18,12 @@
 }
 
 .projects__carousel {
-  width: min(
-    100%,
-    calc(
-      var(--projects-card-width) + var(--projects-card-width) + var(--projects-card-width) +
-        var(--projects-card-gap) + var(--projects-card-gap)
-    )
+  --projects-card-width: clamp(
+    220px,
+    calc((100cqw - 2 * var(--projects-card-gap)) / 3),
+    380px
   );
+  width: 100%;
   margin: 0 auto;
   padding: 1rem 0;
   overflow-x: clip;
@@ -127,23 +126,4 @@
   width: 22px;
   border-radius: 99px;
   background: var(--color-secondary);
-}
-
-@media (max-width: 860px) {
-  .projects__carousel {
-    width: min(100%, calc(var(--projects-card-width) + 2rem));
-  }
-
-  .projects__carousel-slide {
-    flex-basis: min(84vw, var(--projects-card-width));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects__carousel-track,
-  .projects__carousel-slide,
-  .projects__carousel-arrow,
-  .projects__carousel-indicator {
-    transition: none;
-  }
 }
