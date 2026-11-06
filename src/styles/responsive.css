@@ -36,12 +36,12 @@
 @media (min-width: 700px) {
   /* Preview Modal: tablet */
   .preview-modal {
-    padding: var(--space-2xl);
+    padding: var(--space-2xl) calc(var(--space-2xl) - 1.25rem);
   }
 
   .preview-modal__container {
     --preview-pad: var(--space-xl);
-    border-radius: var(--border-rad-xl);
+    border-radius: var(--border-rad-md);
   }
 
   .preview-modal__content {
@@ -78,7 +78,7 @@
 @media (min-width: 1100px) {
   /* Preview Modal: desktop (texto a la izquierda, imagen a la derecha) */
   .preview-modal {
-    padding: var(--space-3xl);
+    padding: var(--space-3xl) calc(var(--space-3xl) - 1.25rem);
   }
 
   .preview-modal__container {
