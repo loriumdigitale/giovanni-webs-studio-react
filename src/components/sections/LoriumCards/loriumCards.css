@@ -53,6 +53,7 @@
   inset: 0;
   z-index: 2;
   opacity: 0.34;
+  pointer-events: none;
 }
 
 .lorium-cards__eyebrow {

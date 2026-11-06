@@ -98,6 +98,14 @@ export function prefiereMovimientoReducido() {
 
 let hardwareCache = null;
 
+/** Dispositivo con puntero táctil principal (sin hover, GPU móvil). */
+export function esDispositivoTactil() {
+  return (
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
+
 /** Clasifica por hardware (WebGL + núcleos). El resultado se cachea. */
 export function clasificarPorHardware() {
   if (hardwareCache) return hardwareCache;

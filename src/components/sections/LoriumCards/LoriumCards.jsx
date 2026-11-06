@@ -1,8 +1,12 @@
+import { useMemo } from "react";
 import "./loriumCards.css";
 import BoxesIcon from "bootstrap-icons/icons/boxes.svg?react";
 import ControllerIcon from "bootstrap-icons/icons/controller.svg?react";
 import SlidersIcon from "bootstrap-icons/icons/sliders.svg?react";
 import { LaserFlow } from "../../ui/LaserFlow/LaserFlow.jsx";
+import { ComponenteOptimizado } from "../../../Config/Optimizer/components/ComponenteOptimizado.jsx";
+import { useRendimiento } from "../../../Config/Optimizer/hooks/useRendimiento.js";
+import { esDispositivoTactil } from "../../../Config/Optimizer/utils/perfil.js";
 
 const LORIUM_LASER_SETTINGS = {
   beamPosition: 0.5, // Centro horizontal de la tarjeta.
@@ -24,6 +28,33 @@ const LORIUM_LASER_SETTINGS = {
   theme: "dark", // Tema de color del efecto: "dark" u "light".
 };
 
+// Calidad del láser según el perfil de rendimiento (Config/Optimizer).
+const LASER_POR_PERFIL = {
+  // Gama alta: calidad completa (DPR nativo hasta 2, entrada y reacción al mouse).
+  high: {},
+  // Gama media: sigue animado pero liviano. fog = 0 apaga el bloque más caro del shader.
+  medium: {
+    dpr: 1,
+    fog: 0,
+    dust: 2,
+    intro: false,
+    mouseInteraction: false,
+  },
+  // Gama baja o movimiento reducido: un solo frame estático, sin entrada ni animación.
+  low: {
+    dpr: 1,
+    intro: false,
+    paused: true,
+    mouseInteraction: false,
+  },
+};
+
+// En táctiles no hay hover y la GPU es móvil: se renderiza a DPR 1 aunque el perfil sea high.
+const LASER_TACTIL = {
+  dpr: 1,
+  mouseInteraction: false,
+};
+
 const areas = [
   { name: "LORIUM GROUPS", icon: BoxesIcon, tone: "groups" },
   { name: "LORIUM GAMES", icon: ControllerIcon, tone: "games" },
@@ -31,14 +62,27 @@ const areas = [
 ];
 
 export function LoriumCards() {
+  const { perfil } = useRendimiento();
+
+  const ajustesLaser = useMemo(
+    () => ({
+      ...LORIUM_LASER_SETTINGS,
+      ...LASER_POR_PERFIL[perfil],
+      ...(esDispositivoTactil() ? LASER_TACTIL : {}),
+    }),
+    [perfil],
+  );
+
   return (
     <section className="lorium-cards" aria-labelledby="lorium-cards-title">
       <header className="lorium-cards__intro">
-        <LaserFlow
-          {...LORIUM_LASER_SETTINGS}
+        {/* Se monta recién cuando el sensor de proximidad lo activa (300px antes de entrar al viewport) */}
+        <ComponenteOptimizado
           className="lorium-cards__laser-flow"
           aria-hidden="true"
-        />
+        >
+          <LaserFlow key={perfil} {...ajustesLaser} />
+        </ComponenteOptimizado>
         <div className="lorium-cards__copy">
           <span className="lorium-cards__eyebrow">
             PROPUESTAS PROPIAS DE LORIUM

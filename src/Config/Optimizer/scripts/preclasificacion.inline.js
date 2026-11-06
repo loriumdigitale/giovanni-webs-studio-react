@@ -1,10 +1,11 @@
 /**
  * Optimizer · scripts/preclasificacion.inline.js  (EL CEREBRO)
  *
- * Script de ejecución inmediata, pensado para pegarse INLINE en el <head> de
- * index.html, antes de cualquier hoja de estilos o módulo:
+ * Script de ejecución inmediata. Va INLINE en el <head> de index.html, antes de
+ * cualquier hoja de estilos o módulo.
  *
- *   <script>/* contenido de este archivo *\/</script>
+ * ESTADO: conectado. index.html contiene una copia de este archivo (sin este
+ * comentario). Si se modifica acá, hay que actualizar también ese <script>.
  *
  * Qué hace, de forma síncrona y antes del primer render:
  *   1. REGLA DE ORO: si prefers-reduced-motion está activo → .perf-low
