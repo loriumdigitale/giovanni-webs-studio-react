@@ -336,6 +336,10 @@
     padding-top: calc(var(--size-2xl) + var(--space-md));
   }
 
+  .hero {
+    padding-top: 0;
+  }
+
   .studio-sidebar {
     top: 12px;
     right: auto;
