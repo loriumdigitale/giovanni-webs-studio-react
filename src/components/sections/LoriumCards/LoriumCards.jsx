@@ -51,11 +51,12 @@ const LASER_POR_PERFIL = {
   },
 };
 
-// En táctiles no hay hover y la GPU es móvil: se renderiza a DPR 1 aunque el perfil sea high.
+// En táctiles se conserva DPR 1 en high y se baja a 0,75 solo tras estrés sostenido.
 const LASER_TACTIL = {
   dpr: 1,
   mouseInteraction: false,
 };
+const DPR_MEDIO_TACTIL = 0.75;
 
 const areas = [
   { name: "LORIUM GROUPS", icon: BoxesIcon, tone: "groups" },
@@ -76,14 +77,18 @@ export function LoriumCards() {
     : laserDegradado
       ? "medium"
       : "high";
+  const esTactil = esDispositivoTactil();
 
   const ajustesLaser = useMemo(
     () => ({
       ...LORIUM_LASER_SETTINGS,
       ...LASER_POR_PERFIL[perfilLaser],
-      ...(esDispositivoTactil() ? LASER_TACTIL : {}),
+      ...(esTactil ? LASER_TACTIL : {}),
+      ...(esTactil && perfilLaser === "medium"
+        ? { dpr: DPR_MEDIO_TACTIL }
+        : {}),
     }),
-    [perfilLaser],
+    [esTactil, perfilLaser],
   );
 
   return (
