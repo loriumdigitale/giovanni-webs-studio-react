@@ -36,11 +36,9 @@ const LORIUM_LASER_SETTINGS = {
 const LASER_POR_PERFIL = {
   // Gama alta: calidad completa (DPR nativo hasta 2, entrada y reacción al mouse).
   high: {},
-  // Gama media: sigue animado pero liviano. fog = 0 apaga el bloque más caro del shader.
+  // Gama media: baja resolución e interacción, pero conserva el brillo de las props base.
   medium: {
     dpr: 1,
-    fog: 0,
-    dust: 2,
     intro: false,
     mouseInteraction: false,
   },
