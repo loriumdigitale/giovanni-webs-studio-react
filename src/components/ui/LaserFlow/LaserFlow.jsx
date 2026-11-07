@@ -447,11 +447,16 @@ export const LaserFlow = ({
   theme = 'dark',
   paused = false,
   dpr,
+  onAnimationFrame,
   ...rest
 }) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const wakeRef = useRef(null);
+  const onAnimationFrameRef = useRef(onAnimationFrame);
+  useEffect(() => {
+    onAnimationFrameRef.current = onAnimationFrame;
+  }, [onAnimationFrame]);
   const settings = {
     surfaceRef,
     beamPositionReference: beamPositionReference === 'surface' ? 'surface' : 'container',
@@ -792,6 +797,8 @@ export const LaserFlow = ({
       const settling =
         Math.abs(state.lens.strength - (s.mouseInteraction && state.pointer.inside ? 1 : 0)) > 0.002 ||
         Math.hypot(state.lens.vx, state.lens.vy) > 0.5;
+      // No medir el intro: el arranque de shaders no representa el costo estable.
+      onAnimationFrameRef.current?.(introducing ? null : now);
       if (moving || introducing || settling) raf = requestAnimationFrame(frame);
       else last = 0;
     };
@@ -817,6 +824,7 @@ export const LaserFlow = ({
 
     const onVisibility = () => {
       last = 0;
+      if (document.hidden) onAnimationFrameRef.current?.(null);
       wake();
     };
 
@@ -827,6 +835,8 @@ export const LaserFlow = ({
       if (visible) {
         last = 0;
         wake();
+      } else {
+        onAnimationFrameRef.current?.(null);
       }
     });
     intersection.observe(container);

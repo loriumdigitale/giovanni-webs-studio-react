@@ -6,6 +6,7 @@ import SlidersIcon from "bootstrap-icons/icons/sliders.svg?react";
 import { LaserFlow } from "../../ui/LaserFlow/LaserFlow.jsx";
 import { ComponenteOptimizado } from "../../../Config/Optimizer/components/ComponenteOptimizado.jsx";
 import { useRendimiento } from "../../../Config/Optimizer/hooks/useRendimiento.js";
+import { useAdaptivePerformance } from "../../../Config/Optimizer/hooks/useAdaptivePerformance.js";
 import { esDispositivoTactil } from "../../../Config/Optimizer/utils/perfil.js";
 
 const LORIUM_LASER_SETTINGS = {
@@ -63,14 +64,19 @@ const areas = [
 
 export function LoriumCards() {
   const { perfil } = useRendimiento();
+  const { degradado: laserDegradado, registrarFrame } = useAdaptivePerformance({
+    enabled: perfil === "high",
+  });
+  const perfilLaser =
+    perfil === "high" && laserDegradado ? "medium" : perfil;
 
   const ajustesLaser = useMemo(
     () => ({
       ...LORIUM_LASER_SETTINGS,
-      ...LASER_POR_PERFIL[perfil],
+      ...LASER_POR_PERFIL[perfilLaser],
       ...(esDispositivoTactil() ? LASER_TACTIL : {}),
     }),
-    [perfil],
+    [perfilLaser],
   );
 
   return (
@@ -80,8 +86,15 @@ export function LoriumCards() {
         <ComponenteOptimizado
           className="lorium-cards__laser-flow"
           aria-hidden="true"
+          data-perfil-laser={perfilLaser}
         >
-          <LaserFlow key={perfil} {...ajustesLaser} />
+          <LaserFlow
+            key={perfilLaser}
+            {...ajustesLaser}
+            onAnimationFrame={
+              perfilLaser === "high" ? registrarFrame : undefined
+            }
+          />
         </ComponenteOptimizado>
         <div className="lorium-cards__copy">
           <span className="lorium-cards__eyebrow">
