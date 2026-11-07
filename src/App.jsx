@@ -13,7 +13,6 @@ import { AnimatedMotion } from "./components/ui/AnimatedMotion/AnimatedMotion.js
 
 export function App() {
   const location = useLocation();
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   useEffect(() => {
@@ -25,14 +24,8 @@ export function App() {
   }, []);
 
   return (
-    <div
-      className="app-shell"
-      data-sidebar-expanded={isSidebarExpanded ? "true" : "false"}
-    >
-      <Sidebar
-        isExpanded={isSidebarExpanded}
-        onExpandedChange={setIsSidebarExpanded}
-      />
+    <div className="app-shell">
+      <Sidebar />
 
       <div className="app-shell__content">
         <IntroVideo onComplete={() => setIsIntroComplete(true)} />

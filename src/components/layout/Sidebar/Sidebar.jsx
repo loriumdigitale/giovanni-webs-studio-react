@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LoriumLogo } from "../../../assets/logos/LoriumLogo.jsx";
 import "./sidebar.css";
@@ -57,7 +57,10 @@ function SidebarIcon({ name }) {
   );
 }
 
-export function Sidebar({ isExpanded, onExpandedChange }) {
+export function Sidebar() {
+  // Mantener este estado local evita volver a renderizar toda la aplicación.
+  const [isExpanded, onExpandedChange] = useState(false);
+
   useEffect(() => {
     if (!isExpanded) return undefined;
 
