@@ -350,6 +350,12 @@
     padding: 6px;
     overflow: hidden;
     border-radius: var(--border-rad-md);
+    transition:
+      width 240ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      height 240ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      padding 240ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      border-radius 240ms ease,
+      box-shadow 240ms ease;
   }
 
   .studio-sidebar[data-expanded="true"] {
@@ -371,22 +377,6 @@
     display: none;
   }
 
-  @supports (clip-path: inset(0)) {
-    .studio-sidebar {
-      width: min(288px, calc(100vw - 24px));
-      height: calc(100dvh - 24px);
-      clip-path: inset(
-        0 calc(100% - 64px) calc(100% - 64px) 0 round var(--border-rad-md)
-      );
-      transition: clip-path 240ms cubic-bezier(0.2, 0.75, 0.25, 1);
-    }
-
-    .studio-sidebar[data-expanded="true"] {
-      width: min(288px, calc(100vw - 24px));
-      height: calc(100dvh - 24px);
-      clip-path: inset(0 round var(--border-rad-lg));
-    }
-  }
 }
 
 @media (max-width: 760px) {
