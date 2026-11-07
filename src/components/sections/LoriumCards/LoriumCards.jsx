@@ -7,7 +7,10 @@ import { LaserFlow } from "../../ui/LaserFlow/LaserFlow.jsx";
 import { ComponenteOptimizado } from "../../../Config/Optimizer/components/ComponenteOptimizado.jsx";
 import { useRendimiento } from "../../../Config/Optimizer/hooks/useRendimiento.js";
 import { useAdaptivePerformance } from "../../../Config/Optimizer/hooks/useAdaptivePerformance.js";
-import { esDispositivoTactil } from "../../../Config/Optimizer/utils/perfil.js";
+import {
+  esDispositivoTactil,
+  prefiereMovimientoReducido,
+} from "../../../Config/Optimizer/utils/perfil.js";
 
 const LORIUM_LASER_SETTINGS = {
   beamPosition: 0.5, // Centro horizontal de la tarjeta.
@@ -64,11 +67,17 @@ const areas = [
 
 export function LoriumCards() {
   const { perfil } = useRendimiento();
+  const movimientoReducido = prefiereMovimientoReducido();
   const { degradado: laserDegradado, registrarFrame } = useAdaptivePerformance({
-    enabled: perfil === "high",
+    enabled: !movimientoReducido,
   });
-  const perfilLaser =
-    perfil === "high" && laserDegradado ? "medium" : perfil;
+  // La clasificación por hardware es conservadora: LaserFlow conserva su
+  // calidad completa y solo baja por medición real, salvo movimiento reducido.
+  const perfilLaser = movimientoReducido
+    ? "low"
+    : laserDegradado
+      ? "medium"
+      : "high";
 
   const ajustesLaser = useMemo(
     () => ({
@@ -87,6 +96,7 @@ export function LoriumCards() {
           className="lorium-cards__laser-flow"
           aria-hidden="true"
           data-perfil-laser={perfilLaser}
+          data-perfil-clasificado={perfil}
         >
           <LaserFlow
             key={perfilLaser}
