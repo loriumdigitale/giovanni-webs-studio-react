@@ -4,7 +4,6 @@
     "name": "Roble Sur v1 | Mueblería Personalizada",
     "title": "Roble Sur v1",
     "subtitle": "Mueblería Personalizada",
-    "objectiveLead": "Una experiencia de compra más clara y organizada.",
     "objective": "Diseñar una solución web funcional para negocios que trabajan bajo un modelo de venta basado en catálogo y personalización. El objetivo fue simplificar el proceso de compra, permitiendo que el cliente pueda explorar productos, personalizarlos, revisar su pedido y finalizar la conversación directamente por WhatsApp de forma clara e intuitiva.",
     "problem": "Muchos pequeños negocios que venden productos personalizados gestionan sus pedidos únicamente por WhatsApp o redes sociales. Esto obliga al cliente a explicar manualmente cada detalle del producto, genera conversaciones repetitivas y aumenta la posibilidad de errores tanto para el comprador como para el vendedor.",
     "solution": "Roble Sur propone un flujo de compra organizado donde el usuario puede observar el catálogo, seleccionar un producto, personalizarlo según sus necesidades, revisar el pedido antes de enviarlo y completar un formulario con sus datos para finalizar la solicitud mediante WhatsApp. De esta forma, el vendedor recibe un pedido mucho más claro y estructurado.",
@@ -17,7 +16,6 @@
       "Interfaz enfocada en la simplicidad y facilidad de uso.",
       "Proyecto pensado como una solución reutilizable para distintos negocios con un modelo de venta similar."
     ],
-    "resultsLead": "De una idea a una primera versión funcional.",
     "results": "Desarrollé una primera versión funcional de Roble Sur, transformando una idea en una experiencia de compra clara e intuitiva. El proyecto permite explorar productos, personalizarlos, revisar pedidos y contactar mediante WhatsApp, sentando una base reutilizable para futuras mejoras y nuevas funcionalidades."
   }
 ]

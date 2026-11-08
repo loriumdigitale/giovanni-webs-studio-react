@@ -46,9 +46,6 @@ export function CaseStudyModal({ caseStudy, isOpen, onClose }) {
             </svg>
             Volver al inicio
           </button>
-          <span className="case-study__brand">
-            LORIUM <span aria-hidden="true">/</span> CASE STUDY
-          </span>
         </div>
 
         <header className="case-study__heading">
@@ -59,9 +56,6 @@ export function CaseStudyModal({ caseStudy, isOpen, onClose }) {
         <div className="case-study__content">
           <div className="case-study__content-item">
             <strong className="case-study__content-title">Objetivo</strong>
-            <h3 className="case-study__content-lead">
-              {caseStudy.objectiveLead}
-            </h3>
             <p className="case-study__content-objective">
               {caseStudy.objective}
             </p>
@@ -103,9 +97,6 @@ export function CaseStudyModal({ caseStudy, isOpen, onClose }) {
           </div>
           <div className="case-study__content-item">
             <strong className="case-study__content-title">Resultados</strong>
-            <h3 className="case-study__content-lead">
-              {caseStudy.resultsLead}
-            </h3>
             <p className="case-study__content-results">{caseStudy.results}</p>
           </div>
         </div>
