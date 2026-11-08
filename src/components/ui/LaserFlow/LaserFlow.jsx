@@ -453,6 +453,7 @@ export const LaserFlow = ({
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const wakeRef = useRef(null);
+  const resizeRef = useRef(null);
   const onAnimationFrameRef = useRef(onAnimationFrame);
   useEffect(() => {
     onAnimationFrameRef.current = onAnimationFrame;
@@ -846,6 +847,7 @@ export const LaserFlow = ({
     resize();
     wake();
 
+    resizeRef.current = resize;
     wakeRef.current = () => {
       if (!raf) render();
       wake();
@@ -855,6 +857,7 @@ export const LaserFlow = ({
       alive = false;
       cancelAnimationFrame(raf);
       wakeRef.current = null;
+      resizeRef.current = null;
       resizeObserver.disconnect();
       intersection.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
@@ -866,6 +869,11 @@ export const LaserFlow = ({
       gl.deleteProgram(program);
     };
   }, []);
+
+  // Cambiar el dpr en caliente redimensiona el canvas sin recrear el contexto WebGL.
+  useEffect(() => {
+    resizeRef.current?.();
+  }, [dpr]);
 
   useEffect(() => {
     wakeRef.current?.();

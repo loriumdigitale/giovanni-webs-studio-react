@@ -121,14 +121,12 @@ export function clasificarPorHardware() {
     nucleos < UMBRALES.NUCLEOS_MEDIUM ||
     maxTextureSize < UMBRALES.TEXTURA_MEDIUM
   ) {
-    resultado = { perfil: PERFIL.LOW, motivo: "hardware" };
-  } else if (
-    nucleos >= UMBRALES.NUCLEOS_HIGH &&
-    maxTextureSize >= UMBRALES.TEXTURA_HIGH
-  ) {
-    resultado = { perfil: PERFIL.HIGH, motivo: "hardware" };
-  } else {
+    // Hardware modesto: nunca se veta, solo arranca más conservador.
     resultado = { perfil: PERFIL.MEDIUM, motivo: "hardware" };
+  } else {
+    // Optimista: la degradación real la decide la medición de tirón
+    // (useAdaptivePerformance) en cada animación compleja.
+    resultado = { perfil: PERFIL.HIGH, motivo: "hardware" };
   }
 
   hardwareCache = Object.freeze(resultado);

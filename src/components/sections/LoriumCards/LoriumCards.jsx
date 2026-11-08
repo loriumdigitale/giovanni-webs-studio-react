@@ -102,7 +102,6 @@ export function LoriumCards() {
           data-perfil-clasificado={perfil}
         >
           <LaserFlow
-            key={perfilLaser}
             {...ajustesLaser}
             onAnimationFrame={
               perfilLaser === "high" ? registrarFrame : undefined

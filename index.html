@@ -15,9 +15,7 @@
 
         // Umbrales (sincronizar con utils/perfil.js)
         var TEXTURA_MEDIUM = 4096;
-        var TEXTURA_HIGH = 8192;
         var NUCLEOS_MEDIUM = 4;
-        var NUCLEOS_HIGH = 6;
         var NUCLEOS_ASUMIDOS = 4;
 
         var hardware = null;
@@ -57,11 +55,11 @@
           if (!textura) {
             hardware = { perfil: "low", motivo: "sin-webgl" };
           } else if (nucleos < NUCLEOS_MEDIUM || textura < TEXTURA_MEDIUM) {
-            hardware = { perfil: "low", motivo: "hardware" };
-          } else if (nucleos >= NUCLEOS_HIGH && textura >= TEXTURA_HIGH) {
-            hardware = { perfil: "high", motivo: "hardware" };
-          } else {
+            // Hardware modesto: nunca se veta, solo arranca más conservador
             hardware = { perfil: "medium", motivo: "hardware" };
+          } else {
+            // Optimista: la degradación real la decide la medición de tirón
+            hardware = { perfil: "high", motivo: "hardware" };
           }
 
           return hardware;
