@@ -6,7 +6,6 @@ import "./sidebar.css";
 const NAV_ITEMS = [
   { to: "/", label: "Inicio", icon: "home" },
   { to: "/about-me", label: "Sobre mí", icon: "about" },
-  { to: "/the-study", label: "El estudio", icon: "study" },
   { to: "/catalog", label: "Proyectos", icon: "projects" },
 ];
 

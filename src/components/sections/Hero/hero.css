@@ -18,8 +18,13 @@
   color: var(--color-primary);
   margin-bottom: 1rem;
 }
-.hero__eyebrow span {
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+}
+.hero__eyebrow .hero__eyebrow-dot {
   display: inline-block;
+  flex-shrink: 0;
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -34,7 +39,10 @@
   margin: 0 0 1.2rem;
   font-weight: 600;
 }
-.hero__title span {
+.hero__title .hero__title-main {
+  display: block;
+}
+.hero__title .hero__title-sub {
   display: block;
   color: var(--color-secondary);
   font-family: Georgia, serif;
@@ -99,16 +107,14 @@
 .hero__orbit {
   position: absolute;
   z-index: 1;
-  width: 220px;
-  height: 190px;
-  border: 1px solid var(--color-secondary);
-  border-radius: 46% 54% 58% 42%;
+  width: 260px;
+  height: 220px;
+  overflow: visible;
   transform: rotate(-25deg);
-  box-shadow:
-    0 0 0 6px var(--color-surface),
-    0 0 0 7px var(--color-secondary),
-    0 0 0 13px var(--color-surface),
-    0 0 0 14px var(--color-secondary);
+}
+.hero__orbit-ring {
+  stroke: var(--color-secondary);
+  stroke-width: 1;
 }
 .hero__code-card {
   position: relative;
@@ -130,58 +136,26 @@
 }
 .hero__code-card code {
   display: block;
+  font-family: "Courier New", Consolas, monospace;
   overflow-wrap: anywhere;
   color: #66459a;
 }
-.hero__typing {
-  display: inline-block;
-  width: 0;
-  overflow: hidden;
-  border-right: 1px solid transparent;
-  white-space: nowrap;
-  vertical-align: bottom;
+.hero__code-editor {
+  position: relative;
 }
-.hero__typing--name.hero__typing--active {
-  animation: hero-typewriter-hide-caret 1.96s steps(28, end) forwards;
+.hero__code-sizer {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
 }
-.hero__typing--location.hero__typing--active {
-  animation:
-    hero-typewriter 1.19s steps(17, end) 2s forwards,
-    hero-caret-blink 0.9s step-end 3.19s infinite;
+.hero__code-live {
+  position: absolute;
+  inset: 0;
 }
-@keyframes hero-typewriter-hide-caret {
-  0% {
-    width: 0;
-    border-right-color: currentColor;
-  }
-  99% {
-    border-right-color: currentColor;
-  }
-  100% {
-    width: var(--hero-typing-width);
-    border-right-color: transparent;
-  }
-}
-@keyframes hero-typewriter {
-  from {
-    width: 0;
-    border-right-color: currentColor;
-  }
-  to {
-    width: var(--hero-typing-width);
-    border-right-color: currentColor;
-  }
-}
-@keyframes hero-caret-blink {
-  50% {
-    border-right-color: transparent;
-  }
-}
-.hero__typing--name {
-  --hero-typing-width: 28ch;
-}
-.hero__typing--location {
-  --hero-typing-width: 17ch;
+.hero__vsc-line {
+  display: flex;
+  align-items: center;
+  white-space: pre;
 }
 .hero__code-mark {
   position: absolute;
@@ -196,4 +170,8 @@
   color: white;
   border-radius: 50%;
   font-size: 1.1rem;
+}
+.hero__code-mark-text {
+  font-family: "Courier New", Consolas, monospace;
+  font-weight: 700;
 }

@@ -1,0 +1,431 @@
+/* =========================================================
+   Block 2 — Animaciones del bloque visual (.hero__visual)
+   Se ejecutan a continuación de block.css (fin: 5.0s)
+   ========================================================= */
+
+/* 1. Contenedor visual: entra desplazándose hacia la izquierda */
+.hero__visual {
+  opacity: 0;
+  transform: translate3d(56px, 0, 0);
+}
+
+.hero__visual--animate {
+  animation: hero-visual-slide-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) 5.2s
+    forwards;
+}
+
+/* 2, 3 y 4. Pasos "IDEA →", "DISEÑO →", "CÓDIGO" desplazándose a la derecha */
+.hero__visual-step {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(-18px, 0, 0);
+}
+
+.hero__visual--animate .hero__visual-step--1 {
+  animation: hero-step-slide-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) 6.1s
+    forwards;
+}
+
+.hero__visual--animate .hero__visual-step--2 {
+  animation: hero-step-slide-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) 6.65s
+    forwards;
+}
+
+.hero__visual--animate .hero__visual-step--3 {
+  animation: hero-step-slide-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) 7.2s
+    forwards;
+}
+
+/* 5. Pie inferior "UN ESPACIO PROPIO EN LA WEB." desplazándose a la derecha */
+.hero__visual-caption {
+  opacity: 0;
+  transform: translate3d(-24px, 0, 0);
+}
+
+.hero__visual--animate .hero__visual-caption {
+  animation: hero-step-slide-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) 7.8s
+    forwards;
+}
+
+/* SVG de fondo (.hero__orbit): se dibuja antes de revelar .hero__code-card */
+.hero__orbit-ring {
+  opacity: 0;
+  stroke-dasharray: 1.05;
+  stroke-dashoffset: 1.05;
+}
+
+.hero__visual--animate .hero__orbit-ring--1 {
+  animation: hero-orbit-draw 0.7s cubic-bezier(0.4, 0, 0.2, 1) 8.5s forwards;
+}
+
+.hero__visual--animate .hero__orbit-ring--2 {
+  animation: hero-orbit-draw 0.7s cubic-bezier(0.4, 0, 0.2, 1) 8.65s forwards;
+}
+
+.hero__visual--animate .hero__orbit-ring--3 {
+  animation: hero-orbit-draw 0.7s cubic-bezier(0.4, 0, 0.2, 1) 8.8s forwards;
+}
+
+/* 6. Revelación de .hero__code-card expandiéndose desde el centro hacia los lados */
+.hero__code-card {
+  opacity: 0;
+  transform: rotate(-5deg) scaleX(0);
+  transform-origin: center center;
+}
+
+.hero__visual--animate .hero__code-card {
+  animation: hero-card-reveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 9.7s forwards;
+}
+
+/* 7. Aparición en cascada de los puntos morados (recién cuando termina la card) */
+.hero__dot {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hero__visual--animate .hero__dot--1 {
+  animation: hero-dot-cascade 0.3s cubic-bezier(0.22, 1, 0.36, 1) 10.65s
+    forwards;
+}
+
+.hero__visual--animate .hero__dot--2 {
+  animation: hero-dot-cascade 0.3s cubic-bezier(0.22, 1, 0.36, 1) 10.8s
+    forwards;
+}
+
+.hero__visual--animate .hero__dot--3 {
+  animation: hero-dot-cascade 0.3s cubic-bezier(0.22, 1, 0.36, 1) 10.95s
+    forwards;
+}
+
+/* =========================================================
+   8. Simulación de clic y escritura de estructura estilo VS Code
+   ========================================================= */
+
+/* Cursor y onda de clic inicial */
+.hero__vsc-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(28px, 22px, 0);
+}
+
+.hero__vsc-ripple {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  z-index: 4;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--color-secondary);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.2);
+}
+
+.hero__visual--animate .hero__vsc-cursor {
+  animation: hero-vsc-cursor-click 0.6s cubic-bezier(0.22, 1, 0.36, 1) 11.45s
+    forwards;
+}
+
+.hero__visual--animate .hero__vsc-ripple {
+  animation: hero-vsc-ripple-pop 0.35s ease-out 11.8s forwards;
+}
+
+/* Todos los fragmentos de código crecen de 0 a su ancho en ch */
+.hero__vsc-typing {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: pre;
+}
+
+/* Línea 1: escribe <main> y autocompleta </main> abajo */
+.hero__vsc-tag-main {
+  --hero-typing-width: 6ch;
+}
+
+.hero__vsc-close-main {
+  --hero-typing-width: 7ch;
+}
+
+.hero__visual--animate .hero__vsc-tag-main {
+  animation:
+    hero-typewriter-width 0.35s steps(6, end) 12.05s forwards,
+    hero-typing-finish 0.35s step-end 12.05s forwards;
+}
+
+.hero__visual--animate .hero__vsc-close-main {
+  animation:
+    hero-typewriter-width 0.12s steps(7, end) 12.4s forwards,
+    hero-typing-finish 0.12s step-end 12.4s forwards;
+}
+
+/* Línea 2: escribe <h1>, autocompleta </h1> y escribe el nombre en el medio */
+.hero__vsc-tag-h1 {
+  --hero-typing-width: 5ch;
+}
+
+.hero__vsc-close-h1 {
+  --hero-typing-width: 6ch;
+}
+
+.hero__typing--name {
+  --hero-typing-width: 28ch;
+}
+
+.hero__visual--animate .hero__vsc-tag-h1 {
+  animation:
+    hero-typewriter-width 0.3s steps(5, end) 12.6s forwards,
+    hero-typing-finish 0.3s step-end 12.6s forwards;
+}
+
+.hero__visual--animate .hero__vsc-close-h1 {
+  animation:
+    hero-typewriter-width 0.1s steps(6, end) 12.9s forwards,
+    hero-typing-finish 0.1s step-end 12.9s forwards;
+}
+
+.hero__visual--animate .hero__typing--name {
+  animation:
+    hero-typewriter-width 1.1s steps(28, end) 13.0s forwards,
+    hero-typing-finish 1.1s step-end 13.0s forwards;
+}
+
+/* Línea 3: escribe <p>, autocompleta </p> y escribe Made in Argentina en el medio */
+.hero__vsc-tag-p {
+  --hero-typing-width: 4ch;
+}
+
+.hero__vsc-close-p {
+  --hero-typing-width: 5ch;
+}
+
+.hero__typing--location {
+  --hero-typing-width: 17ch;
+  border-right: 1px solid transparent;
+}
+
+.hero__visual--animate .hero__vsc-tag-p {
+  animation:
+    hero-typewriter-width 0.25s steps(4, end) 14.25s forwards,
+    hero-typing-finish 0.25s step-end 14.25s forwards;
+}
+
+.hero__visual--animate .hero__vsc-close-p {
+  animation:
+    hero-typewriter-width 0.1s steps(5, end) 14.5s forwards,
+    hero-typing-finish 0.1s step-end 14.5s forwards;
+}
+
+.hero__visual--animate .hero__typing--location {
+  animation:
+    hero-typewriter 0.8s steps(17, end) 14.6s forwards,
+    hero-caret-blink 0.9s step-end 15.4s infinite;
+}
+
+/* =========================================================
+   9. Aparición del círculo morado (.hero__code-mark) y escritura de </>
+   ========================================================= */
+.hero__code-mark {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hero__code-mark-text {
+  --hero-typing-width: 3ch;
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hero__visual--animate .hero__code-mark {
+  animation: hero-dot-cascade 0.4s cubic-bezier(0.22, 1, 0.36, 1) 15.6s forwards;
+}
+
+.hero__visual--animate .hero__code-mark-text {
+  animation:
+    hero-typewriter-width 0.4s steps(3, end) 16.1s forwards,
+    hero-typing-finish 0.4s step-end 16.1s forwards;
+}
+
+/* =========================================================
+   Keyframes
+   ========================================================= */
+@keyframes hero-visual-slide-left {
+  from {
+    opacity: 0;
+    transform: translate3d(56px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-step-slide-right {
+  from {
+    opacity: 0;
+    transform: translate3d(-18px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-orbit-draw {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 1.05;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-card-reveal {
+  0% {
+    opacity: 0;
+    transform: rotate(-5deg) scaleX(0);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-5deg) scaleX(1);
+  }
+}
+
+@keyframes hero-dot-cascade {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-vsc-cursor-click {
+  0% {
+    opacity: 0;
+    transform: translate3d(28px, 22px, 0) scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translate3d(3px, 4px, 0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(3px, 4px, 0) scale(0.8);
+  }
+  78% {
+    opacity: 1;
+    transform: translate3d(3px, 4px, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(8px, -2px, 0) scale(0.95);
+  }
+}
+
+@keyframes hero-vsc-ripple-pop {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes hero-typewriter-width {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--hero-typing-width);
+  }
+}
+
+@keyframes hero-typing-finish {
+  from {
+    overflow: hidden;
+  }
+  to {
+    width: auto;
+    overflow: visible;
+  }
+}
+
+@keyframes hero-typewriter {
+  from {
+    width: 0;
+    border-right-color: currentColor;
+  }
+  to {
+    width: var(--hero-typing-width);
+    border-right-color: currentColor;
+  }
+}
+
+@keyframes hero-caret-blink {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__visual,
+  .hero__visual-step,
+  .hero__visual-caption,
+  .hero__dot,
+  .hero__code-mark {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .hero__orbit-ring {
+    opacity: 1;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .hero__code-card {
+    opacity: 1;
+    transform: rotate(-5deg);
+    animation: none;
+  }
+
+  .hero__vsc-typing,
+  .hero__code-mark-text {
+    width: auto;
+    overflow: visible;
+    border-right: 0;
+    animation: none;
+  }
+
+  .hero__vsc-cursor,
+  .hero__vsc-ripple {
+    display: none;
+    animation: none;
+  }
+}

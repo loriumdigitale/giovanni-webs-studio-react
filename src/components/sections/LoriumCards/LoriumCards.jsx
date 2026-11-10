@@ -67,16 +67,15 @@ const areas = [
 export function LoriumCards() {
   const { perfil } = useRendimiento();
   const movimientoReducido = prefiereMovimientoReducido();
-  const { degradado: laserDegradado, registrarFrame } = useAdaptivePerformance({
+  const { nivel: nivelLaser, registrarFrame } = useAdaptivePerformance({
     enabled: !movimientoReducido,
+    clave: "gws-perf-laserflow",
   });
-  // La clasificación por hardware es conservadora: LaserFlow conserva su
-  // calidad completa y solo baja por medición real, salvo movimiento reducido.
+  // La clasificación por hardware es optimista: LaserFlow arranca con calidad
+  // completa y baja por escalones solo ante tirón sostenido medido.
   const perfilLaser = movimientoReducido
     ? "low"
-    : laserDegradado
-      ? "medium"
-      : "high";
+    : ["high", "medium", "low"][nivelLaser];
   const esTactil = esDispositivoTactil();
 
   const ajustesLaser = useMemo(
@@ -104,7 +103,7 @@ export function LoriumCards() {
           <LaserFlow
             {...ajustesLaser}
             onAnimationFrame={
-              perfilLaser === "high" ? registrarFrame : undefined
+              perfilLaser === "low" ? undefined : registrarFrame
             }
           />
         </ComponenteOptimizado>

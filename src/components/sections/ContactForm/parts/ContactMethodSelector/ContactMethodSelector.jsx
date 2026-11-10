@@ -1,82 +1,55 @@
-import { socials } from "../../../../../data/socials.js";
+import { useId } from "react";
+import { SelectField } from "../SelectField/SelectField.jsx";
+import { FieldIcon } from "../FieldIcon/FieldIcon.jsx";
+import { contactMethods } from "../../../../../data/contactForm.js";
+
+const methodOptions = contactMethods.map((item) => ({
+  value: item.id,
+  label: item.label,
+}));
 
 export function ContactMethodSelector({
   selectedMethod,
-  contactChoice,
-  customContact,
+  contactValue,
   onSelectMethod,
-  onSelectChoice,
-  onCustomChange,
+  onContactChange,
 }) {
-  const selectedSocial = socials.find((item) => item.social === selectedMethod);
+  const inputId = useId();
+  const method = contactMethods.find((item) => item.id === selectedMethod);
 
   return (
-    <div className="contact-form__section contact-form__section--contact-method">
-      <p className="contact-form__label">
-        ¿Por dónde preferís que te contacte?
-        <span className="contact-form__required">*</span>
-      </p>
+    <>
+      <SelectField
+        label="¿Por dónde preferís que te responda?"
+        icon="chat"
+        options={methodOptions}
+        value={selectedMethod}
+        onChange={onSelectMethod}
+        required
+      />
 
-      <div className="contact-form__options contact-form__options--socials">
-        {socials.map((item) => (
-          <button
-            key={item.social}
-            type="button"
-            className={`contact-form__option ${
-              selectedMethod === item.social
-                ? "contact-form__option--selected"
-                : ""
-            }`}
-            onClick={() => onSelectMethod(item.social)}
-          >
-            {typeof item.icon === "function" && (
-              <item.icon
-                className="contact-form__option-icon"
-                aria-hidden="true"
-              />
-            )}
-            {item.social}
-          </button>
-        ))}
-      </div>
-
-      {selectedSocial && (
-        <div className="contact-form__contact-choice">
-          <button
-            type="button"
-            className={`contact-form__choice-option ${
-              contactChoice === "default"
-                ? "contact-form__choice-option--selected"
-                : ""
-            }`}
-            onClick={() => onSelectChoice("default")}
-          >
-            Usar este {selectedSocial.contactLabel}
-          </button>
-          <button
-            type="button"
-            className={`contact-form__choice-option ${
-              contactChoice === "custom"
-                ? "contact-form__choice-option--selected"
-                : ""
-            }`}
-            onClick={() => onSelectChoice("custom")}
-          >
-            Otro {selectedSocial.contactLabel}
-          </button>
+      <div className="contact-form__section">
+        <label className="contact-form__label" htmlFor={inputId}>
+          {method.inputLabel}
+          <span className="contact-form__required">*</span>
+        </label>
+        <div className="contact-form__field">
+          <FieldIcon
+            name={method.icon}
+            className="contact-form__field-icon"
+          />
+          <input
+            id={inputId}
+            type={method.inputType}
+            required
+            autoComplete={method.autoComplete}
+            className="contact-form__input"
+            placeholder={method.placeholder}
+            value={contactValue}
+            onChange={(event) => onContactChange(event.target.value)}
+          />
         </div>
-      )}
-
-      {contactChoice === "custom" && selectedSocial && (
-        <input
-          type="email"
-          required
-          className="contact-form__input"
-          placeholder={`Tu ${selectedSocial.contactLabel}`}
-          value={customContact}
-          onChange={(e) => onCustomChange(e.target.value)}
-        />
-      )}
-    </div>
+      </div>
+    </>
   );
 }

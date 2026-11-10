@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop.jsx";
 import { IntroVideo } from "./components/IntroVideo/IntroVideo.jsx";
@@ -7,7 +7,6 @@ import { Sidebar } from "./components/layout/Sidebar/Sidebar.jsx";
 import { Home } from "./pages/Home.jsx";
 import { AboutMe } from "./pages/AboutMe/AboutMe.jsx";
 import { Catalog } from "./pages/Catalog/Catalog.jsx";
-import { TheStudy } from "./pages/TheStudy/TheStudy.jsx";
 import { Footer } from "./components/layout/Footer/Footer.jsx";
 import { AnimatedMotion } from "./components/ui/AnimatedMotion/AnimatedMotion.jsx";
 
@@ -66,7 +65,7 @@ export function App() {
                 />
                 <Route path="/about-me" element={<AboutMe />} />
                 <Route path="/catalog" element={<Catalog />} />
-                <Route path="/the-study" element={<TheStudy />} />
+                <Route path="/the-study" element={<Navigate to="/" replace />} />
               </Routes>
             </AnimatedMotion>
           </AnimatePresence>

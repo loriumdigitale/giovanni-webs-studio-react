@@ -4,22 +4,49 @@ import {
   esperarCalmaInicial,
 } from "../utils/evaluadorFrames.js";
 
+const NIVEL_MAXIMO = 2;
+const CLAVE_ALMACENAMIENTO = "gws-perf-nivel";
+const CADUCIDAD_MS = 7 * 24 * 60 * 60 * 1000;
+
+function leerNivelGuardado(clave) {
+  try {
+    const guardado = JSON.parse(localStorage.getItem(clave));
+    if (!guardado || Date.now() - guardado.t > CADUCIDAD_MS) return 0;
+    return Math.min(NIVEL_MAXIMO, Math.max(0, Number(guardado.nivel) || 0));
+  } catch {
+    return 0;
+  }
+}
+
+function guardarNivel(clave, nivel) {
+  try {
+    localStorage.setItem(clave, JSON.stringify({ nivel, t: Date.now() }));
+  } catch {
+    // Almacenamiento no disponible: se vuelve a medir en la próxima visita.
+  }
+}
+
 /**
- * Mide el ritmo de frames de una animación y degrada una sola vez si hay tirón
- * sostenido (ver utils/evaluadorFrames.js). El consumidor informa el timestamp
- * recibido por RAF; no se instala un segundo bucle ni se actualiza React en
- * cada frame.
+ * Mide el ritmo de frames de una animación compleja y degrada por escalones
+ * solo si hay tirón sostenido (ver utils/evaluadorFrames.js).
+ *
+ * Niveles: 0 = calidad completa, 1 = reducida, 2 = mínima/estática.
+ * Cada escalón exige volver a demostrar tirón sostenido. El nivel alcanzado se
+ * recuerda 7 días (por `clave`) para no repetir el tirón en la próxima visita.
  *
  * - No mide durante la carga inicial de la página.
  * - Un dispositivo estable a baja tasa de frames no se considera tirón.
- * - La degradación es monotónica durante el montaje para evitar oscilaciones.
+ * - Es monotónico durante el montaje para evitar oscilaciones.
  *
- * @param {{ enabled?: boolean }} options
- * @returns {{ degradado: boolean, registrarFrame: (timestamp: number | null) => void }}
+ * @param {{ enabled?: boolean, clave?: string }} options
+ * @returns {{ nivel: number, degradado: boolean, registrarFrame: (timestamp: number | null) => void }}
  */
-export function useAdaptivePerformance({ enabled = false } = {}) {
-  const [degradado, setDegradado] = useState(false);
-  const degradadoRef = useRef(false);
+export function useAdaptivePerformance({
+  enabled = false,
+  clave = CLAVE_ALMACENAMIENTO,
+} = {}) {
+  const [nivel, setNivel] = useState(() => leerNivelGuardado(clave));
+  const nivelRef = useRef(nivel);
   const listoRef = useRef(false);
   const evaluadorRef = useRef(null);
 
@@ -28,8 +55,10 @@ export function useAdaptivePerformance({ enabled = false } = {}) {
     listoRef.current = false;
     evaluadorRef.current = crearEvaluadorFrames({
       onTiron: () => {
-        degradadoRef.current = true;
-        setDegradado(true);
+        if (nivelRef.current >= NIVEL_MAXIMO) return;
+        nivelRef.current += 1;
+        guardarNivel(clave, nivelRef.current);
+        setNivel(nivelRef.current);
       },
     });
 
@@ -43,17 +72,17 @@ export function useAdaptivePerformance({ enabled = false } = {}) {
       vivo = false;
       listoRef.current = false;
     };
-  }, [enabled]);
+  }, [enabled, clave]);
 
   const registrarFrame = useCallback(
     (timestamp) => {
-      if (!enabled || degradadoRef.current) return;
-      if (!listoRef.current) return;
+      if (!enabled || !listoRef.current) return;
+      if (nivelRef.current >= NIVEL_MAXIMO) return;
 
       evaluadorRef.current?.registrar(timestamp);
     },
     [enabled],
   );
 
-  return { degradado, registrarFrame };
+  return { nivel, degradado: nivel > 0, registrarFrame };
 }

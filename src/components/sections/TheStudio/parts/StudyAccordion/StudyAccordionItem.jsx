@@ -1,23 +1,24 @@
 import { AnimatePresence, motion } from "motion/react";
+import "./studyAccordion.css";
 import {
   accordionContentTransition,
   accordionContentVariants,
 } from "./motion.js";
 
-export function StudySection({ id, title, children, isOpen, onToggle }) {
-  const contentId = `${id}-content`;
+export function StudyAccordionItem({ id, title, children, isOpen, onToggle }) {
+  const contentId = `the-studio-${id}-content`;
 
   return (
-    <div className={`the-study__section ${isOpen ? "is-open" : ""}`}>
+    <div className={`the-studio__accordion-item ${isOpen ? "is-open" : ""}`}>
       <button
-        className="the-study__section-button"
+        className="the-studio__accordion-button"
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={contentId}
       >
         <span>{title}</span>
-        <span className="the-study__section-indicator" aria-hidden="true">
+        <span className="the-studio__accordion-indicator" aria-hidden="true">
           {isOpen ? "-" : "+"}
         </span>
       </button>
@@ -25,7 +26,7 @@ export function StudySection({ id, title, children, isOpen, onToggle }) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            className="the-study__section-content"
+            className="the-studio__accordion-content"
             id={contentId}
             variants={accordionContentVariants}
             initial="initial"
@@ -33,7 +34,7 @@ export function StudySection({ id, title, children, isOpen, onToggle }) {
             exit="exit"
             transition={accordionContentTransition}
           >
-            <p className="the-study__section-text">{children}</p>
+            <p className="the-studio__accordion-text">{children}</p>
           </motion.div>
         )}
       </AnimatePresence>

@@ -20,6 +20,16 @@ const STACK_ITEMS = [
 
 const QUICK_COMMANDS = ["help", "stack", "contacto", "clear"];
 
+function PromptPrefix({ className }) {
+  return (
+    <span className={className}>
+      <span className="footer__prompt-user">lorium</span>{" "}
+      <span className="footer__prompt-path">~</span>{" "}
+      <span className="footer__prompt-symbol">%</span>
+    </span>
+  );
+}
+
 function TerminalResponse({ kind }) {
   if (kind === "help") {
     return (
@@ -116,7 +126,7 @@ export function Footer() {
     setCommand("");
 
     if (normalizedCommand === "clear") {
-      setTerminalEntries([]);
+      setTerminalEntries(null);
       return;
     }
 
@@ -203,7 +213,10 @@ export function Footer() {
                       key={index + "-" + entry.command}
                     >
                       <p className="footer__terminal-command">
-                        <span>lorium ~ %</span> {entry.command}
+                        <PromptPrefix className="footer__terminal-prefix" />{" "}
+                        <span className="footer__terminal-typed">
+                          {entry.command}
+                        </span>
                       </p>
                       <TerminalResponse kind={entry.kind} />
                     </div>
@@ -215,7 +228,7 @@ export function Footer() {
                 <label className="footer__sr-only" htmlFor="footer-terminal-command">
                   Escribe un comando
                 </label>
-                <span className="footer__terminal-prefix">lorium ~ %</span>
+                <PromptPrefix className="footer__terminal-prefix" />
                 <input
                   id="footer-terminal-command"
                   className="footer__terminal-input"

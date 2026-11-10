@@ -1,0 +1,111 @@
+/* 1. Aparición del puntito morado */
+.hero__eyebrow-dot {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hero--animate .hero__eyebrow-dot {
+  animation: hero-dot-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+/* 2. Escritura en tiempo real de izquierda a derecha, sin dejar el cursor al final */
+.hero__eyebrow-text {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hero--animate .hero__eyebrow-text {
+  animation: hero-eyebrow-typing 1.4s steps(49, end) 0.75s forwards;
+}
+
+/* 3, 4 y 5. Desplazamiento suave de izquierda a derecha en secuencia */
+.hero__title-main,
+.hero__title-sub,
+.hero__lead {
+  opacity: 0;
+  transform: translate3d(-36px, 0, 0);
+}
+
+.hero--animate .hero__title-main {
+  animation: hero-slide-right 0.75s cubic-bezier(0.22, 1, 0.36, 1) 2.35s
+    forwards;
+}
+
+.hero--animate .hero__title-sub {
+  animation: hero-slide-right 0.75s cubic-bezier(0.22, 1, 0.36, 1) 3.3s forwards;
+}
+
+.hero--animate .hero__lead {
+  animation: hero-slide-right 0.75s cubic-bezier(0.22, 1, 0.36, 1) 4.25s
+    forwards;
+}
+
+@keyframes hero-dot-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-eyebrow-typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 49ch;
+  }
+}
+
+@keyframes hero-slide-right {
+  from {
+    opacity: 0;
+    transform: translate3d(-36px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 599px) {
+  /* Evita que el texto supere el ancho de pantalla en móviles pequeños */
+  @keyframes hero-eyebrow-typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+      white-space: normal;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__eyebrow-dot,
+  .hero__title-main,
+  .hero__title-sub,
+  .hero__lead {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .hero__eyebrow-text {
+    width: auto;
+    overflow: visible;
+    white-space: normal;
+    border-right: 0;
+    animation: none;
+  }
+}

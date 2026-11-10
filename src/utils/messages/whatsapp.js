@@ -1,25 +1,13 @@
 const WHATSAPP_NUMBER = "5493834368435"; // reemplazar con el número real
 
 export function buildWhatsAppMessage(formData) {
-  const {
-    name,
-    service,
-    stage,
-    projectDetails,
-    contactMethod,
-    contactChoice,
-    customContact,
-  } = formData;
+  const { name, siteType, needs, projectDetails, contact } = formData;
 
   let message = `Hola! Soy ${name}.\n\n`;
-  message += `Quiero consultar sobre: ${service}\n`;
-  message += `Etapa del proyecto: ${stage}\n\n`;
+  message += `Mi sitio web es para: ${siteType}\n`;
+  message += `Necesito resolver: ${needs.join(", ")}\n\n`;
   message += `${projectDetails}\n\n`;
-  message += `Prefiero que me contacten por: ${contactMethod}\n`;
-
-  if (contactChoice === "custom" && customContact) {
-    message += `${contactMethod}: ${customContact}\n`;
-  }
+  message += `Mi WhatsApp: ${contact}\n`;
 
   return message;
 }

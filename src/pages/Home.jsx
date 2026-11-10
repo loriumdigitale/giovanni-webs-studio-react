@@ -4,6 +4,7 @@ import { Projects } from "../components/sections/Projects/Projects.jsx";
 import { ContactForm } from "../components/sections/ContactForm/ContactForm.jsx";
 import { ContactSection } from "../components/sections/ContactSection/ContactSection.jsx";
 import { LoriumCards } from "../components/sections/LoriumCards/LoriumCards.jsx";
+import { TheStudio } from "../components/sections/TheStudio/TheStudio.jsx";
 
 export function Home({ isIntroComplete }) {
   return (
@@ -13,6 +14,7 @@ export function Home({ isIntroComplete }) {
       <Projects />
       <ContactSection />
       <LoriumCards />
+      <TheStudio />
       <ContactForm />
     </>
   );

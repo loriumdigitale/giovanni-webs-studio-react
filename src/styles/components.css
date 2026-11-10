@@ -8,6 +8,8 @@
 
 /* Sección: Hero */
 @import "../components/sections/Hero/hero.css";
+@import "../components/sections/Hero/animations/block.css";
+@import "../components/sections/Hero/animations/block-2.css";
 
 /* Sección: Projects */
 @import "../components/sections/Projects/projects.css";
@@ -33,12 +35,7 @@
 
 /* Página: About Me */
 @import "../pages/AboutMe/aboutMe.css";
-@import "../pages/AboutMe/Sections/Introduction/introduction.css";
-@import "../pages/AboutMe/Sections/Approach/approach.css";
-@import "../pages/AboutMe/Sections/Highlights/highlights.css";
 
-/* Página: The Study */
-@import "../pages/TheStudy/theStudy.css";
 
 /* Página: Proyectos */
 @import "../pages/Catalog/catalog.css";

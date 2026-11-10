@@ -1,23 +1,4 @@
 @media (min-width: 600px) {
-  /* Altura fija del contenedor: evita que la imagen fuerce un crecimiento desc/* Contenedor: altura fija, imagen a la derecha con ancho tope (no %, para evitar que se estire de más en cards muy anchas) */
-  .about-me__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 240px;
-  }
-
-  /* Texto: ocupa el espacio restante, centrado verticalmente */
-  .about-me__content {
-    max-width: 400px;
-  }
-
-  /* Imagen: ancho tope fijo en vez de %, así nunca se estira más de lo razonable para un retrato vertical */
-  .about-me__image {
-    width: 200px;
-    height: 100%;
-  }
-
   .case-study__content-item {
     max-width: 70%;
   }
@@ -25,12 +6,6 @@
     --project-card-width: 280px;
   }
 
-  /* Sección: EL estudio */
-  .the-study__main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
 @media (min-width: 700px) {
@@ -113,74 +88,8 @@
 }
 
 @media (min-width: 800px) {
-  /* About Me */
-  .about-me__image {
-    width: 200px;
-    height: 100%;
-  }
-
-  .contact-form form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: var(--space-2xl);
-    row-gap: var(--space-lg);
-
-    grid-template-areas:
-      "header   details"
-      "services details"
-      "stage    name"
-      "contact  submit";
-  }
-
-  .contact-form__header {
-    grid-area: header;
-    margin-bottom: 0;
-    align-self: start;
-  }
-
-  .contact-form__section--services {
-    grid-area: services;
-    margin-bottom: 0;
-    align-self: start;
-  }
-
-  .contact-form__section--details {
-    grid-area: details;
-    grid-row: 1 / 3;
-    margin-bottom: 0;
-    align-self: stretch;
-
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
   .contact-form__textarea {
-    flex: 1;
-    max-height: none;
-  }
-
-  .contact-form__section--stage {
-    grid-area: stage;
-    margin-bottom: 0;
-    align-self: start;
-  }
-
-  .contact-form__section--name {
-    grid-area: name;
-    margin-bottom: 0;
-    align-self: start;
-  }
-
-  .contact-form__section--contact-method {
-    grid-area: contact;
-    margin-bottom: 0;
-    align-self: start;
-  }
-
-  .contact-form__submit {
-    grid-area: submit;
-    align-self: end;
+    max-height: 250px;
   }
 
   .catalog__grid {
@@ -254,33 +163,6 @@
 
   .contact-section__action {
     justify-self: end;
-  }
-}
-
-@media (max-width: 599px) {
-  .about-me__container {
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 0;
-  }
-
-  .about-me__image {
-    width: 100%;
-    height: 220px;
-    align-self: stretch;
-  }
-
-  .highlights__item-container {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 420px) {
-  .contact-form__options--services,
-  .contact-form__options--stages,
-  .contact-form__options--socials,
-  .contact-form__contact-choice {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -491,14 +373,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__typing--name.hero__typing--active,
-  .hero__typing--location.hero__typing--active {
-    width: auto;
-    overflow: visible;
-    border-right: 0;
-    animation: none;
-  }
-
   .app-shell__content,
   .studio-sidebar,
   .studio-sidebar__link,

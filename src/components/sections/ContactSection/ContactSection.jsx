@@ -6,7 +6,7 @@ export function ContactSection() {
   return (
     <section className="contact-section" aria-labelledby="contact-section-title">
       <div className="contact-section__copy">
-        <p className="contact-section__eyebrow">03&nbsp; · &nbsp;CONTACTO</p>
+        <p className="contact-section__eyebrow">CONTACTO</p>
         <h2 id="contact-section-title" className="contact-section__title">
           ¿Tenés un proyecto en mente?
         </h2>

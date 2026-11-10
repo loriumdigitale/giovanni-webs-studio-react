@@ -27,7 +27,7 @@ export function Services() {
   return (
     <section className="services" aria-labelledby="services-title">
       <div className="services__intro">
-        <span className="services__badge">01&nbsp; · &nbsp;LO QUE HAGO</span>
+        <span className="services__badge">LO QUE HAGO</span>
         <h2 id="services-title" className="services__title">
           ¿Qué necesitás desarrollar?
         </h2>

@@ -1,0 +1,40 @@
+/* Cada panel ocupa la misma celda; el activo entra desde la derecha hacia la izquierda */
+.the-studio__panel {
+  grid-area: 1 / 1;
+  align-self: start;
+  min-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 0.5s ease;
+}
+
+.the-studio__panel.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.the-studio__panel.is-before {
+  transform: translateX(-48px);
+}
+
+.the-studio__panel.is-after {
+  transform: translateX(48px);
+}
+
+.the-studio__panel-title {
+  margin-bottom: var(--space-md);
+  color: var(--color-primary);
+  font-size: clamp(var(--font-size-lg-xl), 3.5vw, var(--font-size-xl));
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .the-studio__panel {
+    transition: none;
+  }
+}

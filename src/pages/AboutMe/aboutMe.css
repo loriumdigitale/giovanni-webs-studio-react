@@ -1,8 +1,21 @@
 .about-me__page-title {
-  font-size: var(--font-size-lg);
-  color: var(--color-text);
-  text-align: center;
+  font-size: clamp(var(--font-size-lg-xl), 4.5vw, var(--font-size-xl));
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  text-align: left;
+  padding-bottom: var(--space-md);
   margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-surface-op2);
+}
+
+.about-me__title-accent {
+  background: var(--gradient-lorium);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .about-me__main {
@@ -10,23 +23,241 @@
   margin-bottom: var(--space-lg);
 }
 
-.about-me {
-  grid-area: about-me;
-}
-
-.my-approach {
-  grid-area: approach;
-}
-
-.highlights {
-  grid-area: highlights;
-}
-
 .about-me__wrapper {
   display: grid;
-  gap: var(--space-lg);
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "about-me"
-    "approach"
-    "highlights";
+    "figure"
+    "accordion";
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.about-me__accordion {
+  grid-area: accordion;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.about-me__figure {
+  grid-area: figure;
+  margin: 0;
+  height: clamp(260px, 60vw, 380px);
+  position: relative;
+  padding: var(--space-md) var(--space-md) 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-tertiary);
+  border-radius: var(--border-rad-lg);
+  overflow: hidden;
+}
+
+/* contain: la imagen siempre se ve completa, sin recortes */
+/* Logo Lorium de fondo, detrás de la imagen */
+.about-me__bg-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-me__image {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  bottom: 0;
+  left: var(--space-md);
+  width: calc(100% - 2 * var(--space-md));
+  height: calc(100% - var(--space-md));
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+}
+
+/* Item: cada bloque es una card con un tono de la paleta */
+.about-me__accordion {
+  gap: var(--space-sm);
+}
+
+.about-me__item {
+  --item-bg: var(--color-surface);
+  --item-title: var(--color-text);
+  --item-text: var(--color-secondary-text);
+  --item-accent: var(--color-secondary);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--item-bg);
+  border-radius: var(--border-rad-md);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-me__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -10px var(--color-primary);
+}
+
+.about-me__item:nth-child(1) {
+  --item-bg: var(--color-primary);
+  --item-title: var(--color-bg);
+  --item-text: var(--color-surface);
+  --item-accent: var(--color-tertiary);
+}
+
+.about-me__item:nth-child(2) {
+  --item-bg: var(--color-secondary);
+  --item-title: var(--color-bg);
+  --item-text: var(--color-surface);
+  --item-accent: var(--color-bg);
+}
+
+.about-me__item:nth-child(3) {
+  --item-bg: var(--color-tertiary);
+  --item-title: var(--color-primary);
+  --item-text: var(--color-text);
+  --item-accent: var(--color-primary);
+}
+
+.about-me__item:nth-child(4) {
+  --item-bg: var(--color-surface);
+  --item-title: var(--color-primary);
+  --item-text: var(--color-secondary-text);
+  --item-accent: var(--color-secondary);
+}
+
+.about-me__item-heading {
+  margin: 0;
+}
+
+.about-me__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  color: var(--item-title);
+  cursor: pointer;
+}
+
+.about-me__trigger:focus-visible {
+  outline: 2px solid var(--item-accent);
+  outline-offset: 4px;
+  border-radius: var(--border-rad-xs);
+}
+
+.about-me__title {
+  font-size: var(--font-size-lg-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--item-title);
+}
+
+.about-me__chevron {
+  flex-shrink: 0;
+  color: var(--item-accent);
+  transition: transform 0.3s ease;
+}
+
+.about-me__item.is-open .about-me__chevron {
+  transform: rotate(180deg);
+}
+/* Texts */
+.about-me__preview-wrap,
+.about-me__panel {
+  display: grid;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.about-me__preview-wrap {
+  grid-template-rows: 1fr;
+}
+
+.about-me__item.is-open .about-me__preview-wrap {
+  grid-template-rows: 0fr;
+}
+
+.about-me__preview-inner,
+.about-me__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding-top: var(--space-xs);
+  transition: opacity 0.3s ease;
+}
+
+.about-me__preview-inner {
+  opacity: 1;
+}
+
+.about-me__item.is-open .about-me__preview-inner {
+  opacity: 0;
+}
+
+.about-me__preview {
+  font-size: var(--font-size-sm);
+  color: var(--item-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.about-me__panel {
+  grid-template-rows: 0fr;
+}
+
+.about-me__item.is-open .about-me__panel {
+  grid-template-rows: 1fr;
+}
+
+.about-me__panel-inner {
+  opacity: 0;
+}
+
+.about-me__item.is-open .about-me__panel-inner {
+  opacity: 1;
+}
+
+.about-me__text {
+  font-size: var(--font-size-sm);
+  color: var(--item-text);
+}
+
+.about-me__text + .about-me__text {
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 700px) {
+  .about-me__wrapper {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    grid-template-areas: "accordion figure";
+    gap: var(--space-xl);
+    align-items: stretch;
+  }
+
+  /* La card acompaña la altura del acordeón y la imagen se adapta dentro */
+  .about-me__figure {
+    height: auto;
+    min-height: 380px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-me__panel,
+  .about-me__preview-wrap,
+  .about-me__preview-inner,
+  .about-me__panel-inner,
+  .about-me__chevron {
+    transition: none;
+  }
 }

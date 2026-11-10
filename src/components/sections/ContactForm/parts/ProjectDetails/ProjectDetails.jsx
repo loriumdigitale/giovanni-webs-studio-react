@@ -4,13 +4,13 @@ export function ProjectDetails({ value, onChange }) {
   return (
     <div className="contact-form__section contact-form__section--details">
       <label className="contact-form__label" htmlFor="project-details">
-        ¿Qué tenés en mente?
+        Tu idea o requerimientos clave
         <span className="contact-form__required">*</span>
       </label>
       <textarea
         id="project-details"
         className="contact-form__textarea"
-        placeholder="Contame tu idea, objetivos o detalles clave..."
+        placeholder="Contame el rubro, si ya tenés logo o fotos, o enlaces de referencia que te gusten..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
         maxLength={MAX_CHARACTERS}

@@ -29,6 +29,20 @@
   --color-text: #382548;
   --color-secondary-text: #81758e;
 
+  /* terminal (footer): ventana y sintaxis */
+  --color-terminal-bg: #1f1429;
+  --color-terminal-bar: #2a1b39;
+  --color-terminal-border: #4a3363;
+  --color-terminal-dot-red: #ff5f57;
+  --color-terminal-dot-yellow: #febc2e;
+  --color-terminal-dot-green: #28c840;
+  --color-code-pink: #c678dd;
+  --color-code-blue: #61afef;
+  --color-code-green: #98c379;
+  --color-code-orange: #e5a05c;
+  --color-code-red: #e06c75;
+  --color-code-muted: #8f84a3;
+
   --gradient-lorium: linear-gradient(
     120deg,
     var(--color-primary),
